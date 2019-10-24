@@ -18,6 +18,9 @@ import './App.css';
 function Navigation(props) {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark shadow mb-3">
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
       <Link className="navbar-brand" to="/">Micro Blog</Link>
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
