@@ -33,3 +33,22 @@ db.sequelize.sync({ force: false });
 
 // start up the server
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+// Ports being used: 
+
+app.get('/api/bathrooms', (req,res) => {
+  //get all bathrooms data from the database
+  const bathrooms = [
+    {id:1, business_name:'Starbucks',location:'Lat:81 Long:32', rating:'9', tag:'coffee place'},
+    {id:2, business_name:'MC Donalds',location:'Lat:86 Long:42', rating:'1', tag:'Fast-Food'},
+    {id:3, business_name:'Park 101',location:'Lat:41 Long:62', rating:'4', tag:'public park'}
+  ];
+  res.json(bathrooms);
+});
+
+
+
+
+
+
+
