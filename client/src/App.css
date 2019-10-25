@@ -21,3 +21,8 @@
   color: #09d3ac;
 }
 */
+
+.navbar-header {
+  text-align: center !important;
+  width: 100%;
+}
