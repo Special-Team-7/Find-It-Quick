@@ -11,6 +11,7 @@ import PostsListPage from './pages/PostsListPage';
 import PostFormPage from './pages/PostFormPage';
 import ShowPostPage from './pages/ShowPostPage';
 import AboutUsPage from './pages/AboutUsPage';
+import BathroomList from './components/bathroom-lists/BathroomList';
 
 import './App.css';
 
@@ -51,6 +52,7 @@ class App extends React.Component {
               </Switch>
             </div>
           </div>
+          <BathroomList/>
         </Router>
     );
   }
