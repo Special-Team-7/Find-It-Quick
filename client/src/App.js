@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SignUp from './pages/SignUp';
+
 import { 
   BrowserRouter as Router, 
   Switch, 
@@ -12,12 +14,22 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import MapsPage from './pages/MapsPage';
 import HomePage from './pages/HomePage';
-import AboutUsPage from './pages/AboutUsPage';
 import BathroomList from './components/bathroom-lists/BathroomList';
 
 import './App.css';
 
+//Firebase stuff
+import withFirebaseAuth from 'react-with-firebase-auth';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseConfig from './firebaseConfig';
 
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseAppAuth = firebaseApp.auth();
+const providers = {
+  googleProvider: new firebase.auth.GoogleAuthProvider(),
+};
+ 
 function Navigation(props) {
   return (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -35,11 +47,6 @@ function Navigation(props) {
           <NavLink className="nav-link" exact to="/Register">
             Register
           </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" exact to="/About-Us">
-            About Us
-           </NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" exact to="/MapsPage">
@@ -63,6 +70,7 @@ function Navigation(props) {
 }
 
 
+
 class App extends React.Component {
   render() {
     return (
@@ -71,10 +79,10 @@ class App extends React.Component {
           <div className="container-fluid text-center">
             <div className="row justify-content-center">
               <Switch>
+                <Route path="/signup" component={SignUp}/>
                 <Route path="/Register" component={RegisterPage} />
                 <Route path="/Login" component={LoginPage} />
                 <Route path="/Maps" component={MapsPage}/>
-                <Route path="/About-Us" component={AboutUsPage} />
                 <Route path="/" component={HomePage} />
               </Switch>
             </div>
@@ -85,5 +93,9 @@ class App extends React.Component {
   }
 }
 
+//export default App;
 
-export default App;
+export default withFirebaseAuth({
+  providers,
+  firebaseAppAuth,
+})(App);
