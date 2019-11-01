@@ -9,17 +9,20 @@ function BathroomCell(bathroom) {
         <div className="container">
           <div className="row">
             <div className="col-3">
-              <img className="img-fluid" src={logo}/>
+              <img className="img-fluid" src={bathroom.url}/>
             </div>
             <div className="col-9">
               <div className='col'>
-                <p>{bathroom.business_name} </p>
+                <p>Business Name:{bathroom.business_name} </p>
               </div>
               <div className='col'>
-                <p>{bathroom.rating} </p>
+                <p>Rating: {bathroom.rating} </p>
               </div>
               <div className='col'>
-                <p>{bathroom.tag} </p>
+                <p>Tag: {bathroom.tag} </p>
+              </div>
+              <div className='col'>
+                <p>Review: {bathroom.review} </p>
               </div>
            </div>
           </div>
