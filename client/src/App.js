@@ -1,7 +1,5 @@
 import React from 'react';
 
-import SignUp from './pages/SignUp';
-
 import { 
   BrowserRouter as Router, 
   Switch, 
@@ -53,6 +51,11 @@ function Navigation(props) {
             Google Maps
            </NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" exact to="/BathroomList">
+            Bathroom List
+           </NavLink>
+        </li>
       </ul>
     </div>
     <Link className="navbar-brand" to="/">
@@ -79,19 +82,48 @@ class App extends React.Component {
           <div className="container-fluid text-center">
             <div className="row justify-content-center">
               <Switch>
-                <Route path="/signup" component={SignUp}/>
                 <Route path="/Register" component={RegisterPage} />
                 <Route path="/Login" component={LoginPage} />
-                <Route path="/Maps" component={MapsPage}/>
+                <Route path="/Maps" component={MapsPage} />
                 <Route path="/" component={HomePage} />
+                <Route path="/BathroomList" component = {BathroomList} />
               </Switch>
             </div>
           </div>
-          <BathroomList/>
+          <div class = "container">
+              <MapsPage/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <BathroomList/>
+          </div>
+          
         </Router>
     );
   }
 }
+
 
 //export default App;
 
