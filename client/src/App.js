@@ -47,7 +47,7 @@ function Navigation(props) {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" exact to="/MapsPage">
+          <NavLink className="nav-link" exact to="/Maps">
             Google Maps
            </NavLink>
         </li>
@@ -82,43 +82,14 @@ class App extends React.Component {
           <div className="container-fluid text-center">
             <div className="row justify-content-center">
               <Switch>
+                <Route path="/BathroomList" component = {BathroomList} />
                 <Route path="/Register" component={RegisterPage} />
                 <Route path="/Login" component={LoginPage} />
                 <Route path="/Maps" component={MapsPage} />
                 <Route path="/" component={HomePage} />
-                <Route path="/BathroomList" component = {BathroomList} />
               </Switch>
             </div>
           </div>
-          <div class = "container">
-              <MapsPage/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <BathroomList/>
-          </div>
-          
         </Router>
     );
   }
