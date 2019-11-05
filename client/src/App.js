@@ -1,7 +1,5 @@
 import React from 'react';
 
-import SignUp from './pages/SignUp';
-
 import { 
   BrowserRouter as Router, 
   Switch, 
@@ -49,8 +47,13 @@ function Navigation(props) {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" exact to="/MapsPage">
+          <NavLink className="nav-link" exact to="/Maps">
             Google Maps
+           </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" exact to="/BathroomList">
+            Bathroom List
            </NavLink>
         </li>
       </ul>
@@ -79,19 +82,19 @@ class App extends React.Component {
           <div className="container-fluid text-center">
             <div className="row justify-content-center">
               <Switch>
-                <Route path="/signup" component={SignUp}/>
+                <Route path="/BathroomList" component = {BathroomList} />
                 <Route path="/Register" component={RegisterPage} />
                 <Route path="/Login" component={LoginPage} />
-                <Route path="/Maps" component={MapsPage}/>
+                <Route path="/Maps" component={MapsPage} />
                 <Route path="/" component={HomePage} />
               </Switch>
             </div>
           </div>
-          <BathroomList/>
         </Router>
     );
   }
 }
+
 
 //export default App;
 

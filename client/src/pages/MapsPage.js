@@ -1,32 +1,31 @@
 import React from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
-class MapsPage extends React.Component{
+const mapStyles = {
+  width: '100%',
+  height: '100%'
+};
+
+export class MapsPage extends React.Component {
   render() {
     return (
-        <div>
-            {this.renderRedirect()}
-            {this.state.locRendered ? (
-                <Map
-                    google={this.props.google}
-                    zoom={14}
-                    styles={this.props.mapStyles}
-                    disableDefaultUI={true}
-                    onClick={this.saveCoords}
-                    onDragend={this.centerMoved}
-                    initialCenter={{
-                        lat: this.state.loc_x,
-                        lng: this.state.loc_y
-                    }}
-                >
-                </Map>
-            ) : null}
+      <div className="container-fluid text-center">
+        <div className="row justify-content-center">
+          <Map
+            google={this.props.google}
+            zoom={14}
+            style={mapStyles}
+            initialCenter={{
+            lat: 40.7831,
+            lng: -73.9712
+            }}
+          />
         </div>
-    )
+      </div>
+    );
   }
 }
 
-
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCV_7PYGsw3EODTvFicWwnQsvbWQi7MgzA'
+  apiKey: 'AIzaSyCw1Cu5QmZqsFLWq-D7m12E3Qqjjj13xWY'
 })(MapsPage);
