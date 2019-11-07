@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const path = require('path');
 const db = require('./models');
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 
 
 // this lets us parse 'application/json' content in http requests
@@ -36,15 +36,7 @@ app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 // Ports being used: 
 
-app.get('/api/bathrooms', (req,res) => {
-  //get all bathrooms data from the database
-  const bathrooms = [
-    {id:1, business_name:'Starbucks',location:'Lat:81 Long:32', rating:'9', tag:'coffee place'},
-    {id:2, business_name:'MC Donalds',location:'Lat:86 Long:42', rating:'1', tag:'Fast-Food'},
-    {id:3, business_name:'Park 101',location:'Lat:41 Long:62', rating:'4', tag:'public park'}
-  ];
-  res.json(bathrooms);
-});
+
 
 
 

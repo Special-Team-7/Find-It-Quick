@@ -3,7 +3,7 @@ import Post from '../components/Post';
 import Loading from '../components/Loading';
 
 
-class PostsListPage extends React.Component {
+class HomePage extends React.Component {
   state = {
     posts: [],
     loading: true,
@@ -29,11 +29,11 @@ class PostsListPage extends React.Component {
     return (
       <div className="container-fluid text-center">
         <div className="row justify-content-center">
-          { this.state.posts }
+          { /*this.state.posts*/ }
         </div>
       </div>
     );
   }
 }
 
-export default PostsListPage;
+export default HomePage;
