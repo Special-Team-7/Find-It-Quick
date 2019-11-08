@@ -6,15 +6,21 @@ module.exports = (sequelize, DataTypes) => {
 	class User extends Model {}
   
 	User.init({
+		id: {
+			type: DataTypes.TEXT,
+			allowNull: false,
+			primaryKey: true,
+			field: 'id'
+		},
 		name: {
 			type: DataTypes.TEXT,
-			allowNull: true,
-			field: 'pname'
+			allowNull: false,
+			field: 'name'
 		},
 		email: {
 			type: DataTypes.TEXT,
 			allowNull: true,
-			field: 'pname'
+			field: 'email'
 		},
 	}, {
 	  // PUT THE NAME OF THE CLASS BELOW 
