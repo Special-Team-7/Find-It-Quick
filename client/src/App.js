@@ -16,7 +16,7 @@ import BathroomList from './components/bathroom-lists/BathroomList';
 
 import './App.css';
 
-//Firebase stuff
+//Firebase Set up
 import withFirebaseAuth from 'react-with-firebase-auth';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -75,6 +75,13 @@ function Navigation(props) {
 
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      me: firebase.auth().currentUser
+    }
+  }
+
   render() {
     return (
         <Router>
@@ -102,3 +109,4 @@ export default withFirebaseAuth({
   providers,
   firebaseAppAuth,
 })(App);
+
