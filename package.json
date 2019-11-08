@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd client && npm install && npm run build"
   },
-  "author": "Edgardo Molina",
+  "author": "Team 7",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
