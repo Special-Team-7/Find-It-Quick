@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import './BathroomCell.css';
 import logo from '../../public/logo192.png';
-
+import BathroomPage from '../../pages/BathroomPage'
+import {Link} from 'react-router-dom';
 
 function BathroomCell(bathroom) {
     {bathroom = bathroom.bathroom};
@@ -13,7 +14,7 @@ function BathroomCell(bathroom) {
             </div>
             <div className="col-9">
               <div className='col'>
-                <p>Business Name:{bathroom.business_name} </p>
+                <Link to={`/bathroom/${bathroom.id}`}> Name:{bathroom.business_name} </Link>
               </div>
               <div className='col'>
                 <p>Rating: {bathroom.rating} </p>
@@ -26,11 +27,10 @@ function BathroomCell(bathroom) {
               </div>
            </div>
           </div>
+        <div>
+
         </div>
-
-
-
-
+      </div>
     );
 }
 

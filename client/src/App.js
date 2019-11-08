@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { 
-  BrowserRouter as Router, 
-  Switch, 
+import {
+  BrowserRouter as Router,
+  Switch,
   Route,
   Link,
   NavLink
@@ -12,6 +12,7 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import MapsPage from './pages/MapsPage';
 import HomePage from './pages/HomePage';
+import BathroomPage from './pages/BathroomPage';
 import BathroomList from './components/bathroom-lists/BathroomList';
 
 import './App.css';
@@ -27,7 +28,7 @@ const firebaseAppAuth = firebaseApp.auth();
 const providers = {
   googleProvider: new firebase.auth.GoogleAuthProvider(),
 };
- 
+
 function Navigation(props) {
   return (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,12 +37,12 @@ function Navigation(props) {
     </button>
     <div className="collapse navbar-collapse aria-expanded=false" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
-        <li className="nav-item"> 
+        <li className="nav-item">
           <NavLink className="nav-link" exact to="/Login">
             Login
           </NavLink>
         </li>
-        <li className="nav-item"> 
+        <li className="nav-item">
           <NavLink className="nav-link" exact to="/Register">
             Register
           </NavLink>
@@ -86,6 +87,10 @@ class App extends React.Component {
                 <Route path="/Register" component={RegisterPage} />
                 <Route path="/Login" component={LoginPage} />
                 <Route path="/Maps" component={MapsPage} />
+                <Route path="/bathroom/:bathroomId" component={BathroomPage}/>
+                <Route path="/bathroom" component={BathroomPage}/>
+                {/*TODO: Bathroom Page route should contain bathroom ID from the API call and passed as a prop*/}
+                <Route path="/BathroomPage" component={BathroomPage} />
                 <Route path="/" component={HomePage} />
               </Switch>
             </div>
