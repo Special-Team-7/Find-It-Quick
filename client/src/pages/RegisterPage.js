@@ -11,10 +11,10 @@ export default class RegisterPage extends React.Component {
       
       //Create user in Firebase
       createUser = (e) => {
-        console.log(`Email: ${this.state.email} Pass: ${this.state.password}`);
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
           var errorCode = error.code;
           var errorMessage = error.message;
+          //Todo: Save on database .......
           console.log(errorMessage)
         });
       }
@@ -57,6 +57,7 @@ export default class RegisterPage extends React.Component {
             </form>
 
             </header>
+          <h1>{this.props.firebase}</h1>
       </div>
       );
     
