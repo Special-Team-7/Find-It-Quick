@@ -1,38 +1,47 @@
 'use strict';
 const { Model } = require('sequelize');
 
-module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('review', {
-		revId: {
-			type: DataTypes.INTEGER,
+module.exports = (sequelize, DataTypes) => {
+	class Review extends Model {}
+  
+	Review.init({
+		UID: {
+			type: DataTypes.TEXT,
 			allowNull: false,
-			primaryKey: true,
-			field: 'rev_id'
-		},
-		userId: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
+			field: 'UID',
 			references: {
-				model: 'users',
-				key: 'user_id'
-			},
-			field: 'user_id'
+				model: "users",
+				key: "id"
+			}
 		},
-		bathId: {
+		BID: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			field: 'BID',
 			references: {
-				model: 'bathroom',
-				key: 'bath_id'
-			},
-			field: 'bath_id'
+				model: "bathrooms",
+				key: "id"
+			}
 		},
 		rating: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			defaultValue: '1',
+			field: 'rating'
+		},
+		review: {
+			type: DataTypes.TEXT,
+			allowNull: true,
+			defaultValue: '1',
 			field: 'rating'
 		}
 	}, {
-		tableName: 'review'
+	  // PUT THE NAME OF THE CLASS BELOW 
+	  sequelize,
+	  modelName: 'review'
 	});
-};
+
+
+  
+	return Review;
+  };
