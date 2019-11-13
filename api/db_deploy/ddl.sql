@@ -1,50 +1,20 @@
 BEGIN;
 
-DROP TABLE IF EXISTS users CASCADE;
-
-DROP TABLE IF EXISTS bathroom CASCADE;
-
-DROP TABLE IF EXISTS review CASCADE;
---RUNME psql -d FindIt_development -f ddl.sql
-
-CREATE TABLE users (
-	user_id integer NOT NULL,
-	pname text 
-);
-
-CREATE TABLE bathroom(
-	bath_id integer NOT NULL,
-	name text NOT NULL,
-	location text NOT NULL,
-	rating integer DEFAULT 1 CHECK (rating>0 AND rating<6)
-); 
-
-CREATE TABLE review(
-	rev_id integer NOT NULL,
-	user_id integer NOT NULL,
-	bath_id integer NOT NULL,
-	rating integer NOT NULL CHECK (rating>0 AND rating<6)
-);
-
-
-
 
 
 -- Change reading in data from stdin to actual file reading
 -- make a csv for each respective table
 
 COPY users(user_id,pname) FROM stdin;
-12	"Frank"
-13	"Maria"
-14	"Hubert"
-15	"Robert"
-16	"Phillip"
+"A1"	"Frank"	"f@gmail.com"
+"A2"	"Maria"	"m@gmail.com"
+"B1"	"Hubert"	"f@gmail.com"
 \.
 
-COPY bathroom(bath_id,name,location,rating) FROM stdin;
-20	"McDonalds"	"Bronx"	1
-21	"Starbucks"	"Manhattan"	3
-22	"Alexander Park"	"Brooklyn"	4
+COPY bathroom(id,name,address,latitude,longitude,category) FROM stdin;
+20	"McDonalds"	"1188 6th Ave, New York, NY 10036"	40.757561	-73.981667	
+
+
 \.
 
 COPY review(rev_id,user_id,bath_id,rating) FROM stdin;
@@ -58,23 +28,6 @@ COPY review(rev_id,user_id,bath_id,rating) FROM stdin;
 
 
 
-ALTER TABLE ONLY users
-	ADD CONSTRAINT users_pkey PRIMARY KEY(user_id);
-
-ALTER TABLE ONLY bathroom 
-	ADD CONSTRAINT buyers_pkey PRIMARY KEY(bath_id);
-
-ALTER TABLE ONLY review
-	ADD CONSTRAINT transactions_pkey PRIMARY KEY(rev_id);
-
--- this is for setting references 
-ALTER TABLE ONLY review
-	ADD CONSTRAINT review_user_id_fkey FOREIGN KEY(user_id)
-       	REFERENCES users(user_id);
-
-ALTER TABLE ONLY review
-	ADD CONSTRAINT review_bath_id_fkey FOREIGN KEY(bath_id)
-	REFERENCES bathroom(bath_id);
 
 COMMIT;
 ANALYZE users;
