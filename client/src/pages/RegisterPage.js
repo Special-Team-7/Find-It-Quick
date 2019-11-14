@@ -13,9 +13,11 @@ export default class RegisterPage extends React.Component {
       createUser = (e) => {
         console.log(`Name:${this.state.name} email:${this.state.email} password:${this.state.password}`);
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(data => {
+          data.user.updateProfile({displayName:this.state.name});
           let usr = {
             id: data.user.uid,
-            name: this.state.name
+            name: this.state.name,
+            email: this.state.email
           }
           
           //To do: Save user obj on database
@@ -45,11 +47,6 @@ export default class RegisterPage extends React.Component {
       }
     
     render() {
-      const {
-        user,
-        signOut,
-        signInWithGoogle,
-      } = this.props;
 
       return (
         <div className="App">
@@ -71,7 +68,6 @@ export default class RegisterPage extends React.Component {
             <button onClick={this.createUser}>Sign Up</button>
 
             </header>
-          <h1>{this.props.firebase}</h1>
       </div>
       );
     
