@@ -3,21 +3,6 @@ var fakeBathrooms = require('../fakeBathrooms');
 const router = express.Router();
 //const { Post } = db;
 
-//some mock stuff while i connect the database
-let bathroom = {
-    1 : {name: 'McDonald',location: 'NY'},
-    2 : {name: 'Starbucks',location: 'BK'},
-}
-
-let review = {
-    1 : {UID: '12', BID: '1',review: "stinks"},
-    2 : {UID: '13',BID: '2',review: "good!"},
-}
-
-let user = {
-    12 : {name: 'Ant'},
-    23 : {name: 'Sam'},
-}
 
 
 //get all bathrooms
