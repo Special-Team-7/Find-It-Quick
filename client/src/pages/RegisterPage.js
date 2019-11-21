@@ -19,8 +19,7 @@ export default class RegisterPage extends React.Component {
             email: this.state.email
           }
 
-          //To do: Save user obj on database
-          // Make post request
+          // Make post request to save on the DB
           fetch('/api/user/register',{
             method:'POST',
             body: JSON.stringify(usr),
@@ -89,12 +88,5 @@ export default class RegisterPage extends React.Component {
     }
 }
 
-
-/**
-ToDO:
-return success to user 
-input fields
-
-  **/
  
   
