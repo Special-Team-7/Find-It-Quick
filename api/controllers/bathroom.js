@@ -7,18 +7,21 @@ const router = express.Router();
 
 //get all bathrooms
 router.get('/', (req,res) => {
+    
+
+
+
     res.json(fakeBathrooms);
 })
 
 //get reviews for a bathroom
-router.get('/bathroom/:id', (req,res) => {
-
-    
+router.get('/:id', (req,res) => {
+    res.json("workin");
 });
 
 //get user profile
 router.get('/:userid', (req,res) => {
-    
+
 });
 
 //post a review for a bathroom 
