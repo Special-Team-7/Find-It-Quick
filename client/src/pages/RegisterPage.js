@@ -11,7 +11,6 @@ export default class RegisterPage extends React.Component {
       
       //Create user in Firebase
       createUser = (e) => {
-        console.log(`Name:${this.state.name} email:${this.state.email} password:${this.state.password}`);
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(data => {
           data.user.updateProfile({displayName:this.state.name});
           let usr = {
@@ -19,8 +18,23 @@ export default class RegisterPage extends React.Component {
             name: this.state.name,
             email: this.state.email
           }
-          
-          //To do: Save user obj on database
+
+          // Make post request to save on the DB
+          fetch('/api/user/register',{
+            method:'POST',
+            body: JSON.stringify(usr),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }).then(res => {
+            if(res.ok) {
+              console.log('Created user successfully');
+            }
+            else {
+              throw new Error('Error creating user');
+            }
+          })
+
         }).catch(error => {
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -74,12 +88,5 @@ export default class RegisterPage extends React.Component {
     }
 }
 
-
-/**
-ToDO:
-return success to user 
-input fields
-
-  **/
  
   
