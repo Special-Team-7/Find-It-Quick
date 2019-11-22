@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@icon/open-iconic": "^1.1.1",
     "bootstrap": "^4.3.1",
     "firebase": "^7.2.3",
     "react": "^16.10.1",
@@ -10,6 +11,8 @@
     "react-dom": "^16.10.1",
     "react-geocode": "^0.2.1",
     "react-google-autocomplete": "^1.1.2",
+    "react-icons": "^3.8.0",
+    "react-rating": "^2.0.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
     "react-with-firebase-auth": "^1.1.0"

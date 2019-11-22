@@ -33,14 +33,3 @@ db.sequelize.sync({ force: false });
 
 // start up the server
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-
-// Ports being used: 
-
-
-
-
-
-
-
-
-

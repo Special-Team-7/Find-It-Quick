@@ -21,14 +21,13 @@ class BathroomList extends Component {
       return (
         <div>
           <h2>List of bathrooms</h2>
-            {this.state.bathrooms.map(bathroom => { 
+            {this.state.bathrooms.map(bathroom => {
               return <BathroomCell key={bathroom.id} bathroom={bathroom}></BathroomCell>
             })}
         </div>
       );
     }
-    
+
 }
 
 export default BathroomList;
-

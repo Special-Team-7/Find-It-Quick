@@ -19,6 +19,7 @@
     "morgan": "^1.9.1",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
+    "react-rating": "^2.0.1",
     "react-with-firebase-auth": "^1.1.0",
     "sequelize": "^5.19.2",
     "sqlite3": "^4.1.0"
