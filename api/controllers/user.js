@@ -29,13 +29,18 @@ router.get('/', (req,res) => {
 
 router.post('/register', (req,res) => {
     let user = {
-        id: req.body.id,
-        name: req.body.name,
-        email: req.body.email
+        body_id: req.body.id,
+        body_name: req.body.name,
+        body_email: req.body.email
      };
-
-     res.send(req.body);
-     console.log(req.body);
+    User.create({id:user.body_id, name: user.body_name, email: user.body_email})
+    .then(task => {
+        res.sendStatus(200);
+        console.log(`Looks good?: ${task}`);
+    }).catch(err => {
+        res.send(err);
+    })
+    
 
 });
 
