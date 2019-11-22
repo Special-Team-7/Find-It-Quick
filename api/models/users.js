@@ -1,19 +1,31 @@
-/* jshint indent: 1 */
+'use strict';
+const { Model } = require('sequelize');
 
-module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('users', {
-		userId: {
-			type: DataTypes.INTEGER,
+
+module.exports = (sequelize, DataTypes) => {
+	class User extends Model {}
+  
+	User.init({
+		id: {
+			type: DataTypes.TEXT,
 			allowNull: false,
 			primaryKey: true,
-			field: 'user_id'
+			field: 'id'
 		},
-		pname: {
+		name: {
+			type: DataTypes.TEXT,
+			allowNull: false,
+			field: 'name'
+		},
+		email: {
 			type: DataTypes.TEXT,
 			allowNull: true,
-			field: 'pname'
-		}
+			field: 'email'
+		},
 	}, {
-		tableName: 'users'
+	  // PUT THE NAME OF THE CLASS BELOW 
+	  sequelize,
+	  modelName: 'user'
 	});
-};
+	return User;
+  };

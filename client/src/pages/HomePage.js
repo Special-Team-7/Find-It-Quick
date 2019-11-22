@@ -29,7 +29,11 @@ class HomePage extends React.Component {
     return (
       <div className="container-fluid text-center">
         <div className="row justify-content-center">
-          { /*this.state.posts*/ }
+        {
+          <h1>
+            Home Page. Probably Will Be Google Maps. Just For Testing Purposes.
+          </h1>
+        }
         </div>
       </div>
     );

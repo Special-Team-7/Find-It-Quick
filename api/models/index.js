@@ -37,3 +37,12 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
+//code for viewing your relations in psql
+// SELECT conrelid::regclass AS table_from
+//      , conname
+//      , pg_get_constraintdef(oid)
+// FROM   pg_constraint
+// WHERE  contype IN ('f', 'p ')
+// AND    connamespace = 'public'::regnamespace  -- your schema here
+// ORDER  BY conrelid::regclass::text, contype DESC;

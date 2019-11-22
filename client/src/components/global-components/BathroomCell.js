@@ -17,13 +17,13 @@ function BathroomCell(bathroom) {
                 <Link to={`/bathroom/${bathroom.id}`}> Name:{bathroom.business_name} </Link>
               </div>
               <div className='col'>
-                <p>Rating: {bathroom.rating} </p>
+                <p>Rating: {bathroom.average_rating} </p>
               </div>
               <div className='col'>
-                <p>Tag: {bathroom.tag} </p>
+                <p>Category: {bathroom.category} </p>
               </div>
               <div className='col'>
-                <p>Review: {bathroom.review} </p>
+                <p>Address: {bathroom.address} </p>
               </div>
            </div>
           </div>
