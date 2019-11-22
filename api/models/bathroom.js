@@ -29,14 +29,14 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		category: {
 			type: DataTypes.TEXT,
-			allowNull: true,
+			allowNull: false,
 			defaultValue: 'private',
 			field: 'category'
 		},
-		average_rating: {
+		rating: {
 			type: DataTypes.INTEGER,
 			defaultValue: 0,
-			field: 'average_rating'
+			field: 'rating'
 		}
 	}, {
 	  // PUT THE NAME OF THE CLASS BELOW 
