@@ -43,15 +43,12 @@ router.get('/:id', (req,res) => {
 
 
 //post a new bathroom location
-router.post('/new', (req,res) => {
+router.post('/create', (req,res) => {
     let body = req.body;
     if(!body){
         //Send user 404 if there is not body
         res.sendStatus(404);
     }
-
-
-
 });
 
 //post a review for a bathroom 
