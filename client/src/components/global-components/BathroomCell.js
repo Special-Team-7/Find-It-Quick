@@ -13,16 +13,16 @@ function BathroomCell(bathroom) {
             </div>
             <div className="col-9">
               <div className='col'>
-                <p>Business Name:{bathroom.business_name} </p>
+                <p>Business Name:{bathroom.name} </p>
               </div>
               <div className='col'>
-                <p>Rating: {bathroom.rating} </p>
+                <p>Rating: {bathroom.average_rating} </p>
               </div>
               <div className='col'>
-                <p>Tag: {bathroom.tag} </p>
+                <p>Category: {bathroom.category} </p>
               </div>
               <div className='col'>
-                <p>Review: {bathroom.review} </p>
+                <p>Address: {bathroom.address} </p>
               </div>
            </div>
           </div>

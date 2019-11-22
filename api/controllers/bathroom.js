@@ -9,13 +9,17 @@ const {Bathroom,Post,User} = require('../models');
 //get all bathrooms
 router.get('/', (req,res) => {
     Bathroom.findAll({
-    }).then(bathroom => {
-        if(!bathroom){
-            res.send("No Bathrooms Found!");
+    }).then(bathrooms => {
+        if(!bathrooms){
+            res.send(404);
         }
-        console.log(bathroom);
-        //res.json(bathroom);
-        res.json(fakeBathrooms);
+
+        // Temporary so that each bathroom has a temporary picture
+        bathrooms.forEach(bathroom => {
+            bathroom.dataValues.url = fakeBathrooms[0].url;
+        })
+        res.json(bathrooms);
+        //res.json(fakeBathrooms);
     })
 })
 

@@ -10,33 +10,37 @@ const mapStyles = {
 export class MapsPage extends React.Component {
   constructor(props) {
     super(props);
-  //   this.state = {
-	// 		address: '',
-	// 		city: '',
-	// 		area: '',
-	// 		state: '',
-	// 		mapPosition: {
-	// 			lat: this.props.center.lat,
-	// 			lng: this.props.center.lng
-	// 		},
-	// 		markerPosition: {
-	// 		  lat: this.props.center.lat,
-	// 			lng: this.props.center.lng
-	// 		}
-	// 	}
-	// }
-
-  this.state = {
-      stores: [{latitude: 40.8200471, longitude: -73.9514611},
-              {latitude: 40.7670624, longitude: -73.9786206},
-              {latitude: 40.7568039, longitude: -73.9852351},
-              {latitude: 40.7424096, longitude: -74.0058617},
-              {latitude: 40.7424096, longitude: -74.0058617}]
+    this.state = {
+        bathrooms: [],
+        locations: []
     }
   }
 
+  //Runs when component mounts
+  componentDidMount() {
+    //Getting all of the bathrooms via api
+    fetch('/api/bathrooms').then(res => res.json()).then((res) => {
+      this.setState({bathrooms: res});
+      this.setState({locations: this.getAllMarkers()});
+    });
+  }
+
+  getAllMarkers = () => {
+    //Array of objects containing lat-long information of all bathrooms
+    let results = [];
+
+    this.state.bathrooms.forEach(bathroom => {
+      results.push({
+        latitude:bathroom.latitude,
+        longitude: bathroom.longitude
+      });
+    });
+
+    return results;
+  }
+
   displayMarkers = () => {
-    return this.state.stores.map((store, index) => {
+    return this.state.locations.map((store, index) => {
       return <Marker key={index} id={index} position={{
        lat: store.latitude,
        lng: store.longitude
@@ -65,7 +69,7 @@ export class MapsPage extends React.Component {
             }}
             >
             {this.displayMarkers()}
-            </Map>
+          </Map>
             <label className="col-sm-4 col-form-label">{this.props.label}</label>
             <div className="col-xl-8">
               <input
