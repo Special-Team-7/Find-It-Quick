@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import Geocode from "react-geocode";
 
 const mapStyles = {
@@ -9,29 +9,16 @@ const mapStyles = {
 
 export class MapsPage extends React.Component {
   constructor(props) {
-    super(props);
-  //   this.state = {
-	// 		address: '',
-	// 		city: '',
-	// 		area: '',
-	// 		state: '',
-	// 		mapPosition: {
-	// 			lat: this.props.center.lat,
-	// 			lng: this.props.center.lng
-	// 		},
-	// 		markerPosition: {
-	// 		  lat: this.props.center.lat,
-	// 			lng: this.props.center.lng
-	// 		}
-	// 	}
-	// }
-
+  super(props);
   this.state = {
       stores: [{latitude: 40.8200471, longitude: -73.9514611},
               {latitude: 40.7670624, longitude: -73.9786206},
               {latitude: 40.7568039, longitude: -73.9852351},
               {latitude: 40.7424096, longitude: -74.0058617},
-              {latitude: 40.7424096, longitude: -74.0058617}]
+              {latitude: 40.7424096, longitude: -74.0058617}],
+              showingInfoWindow: false,
+              activeMarker: {},
+              selectedPlace: {},
     }
   }
 
@@ -41,7 +28,7 @@ export class MapsPage extends React.Component {
        lat: store.latitude,
        lng: store.longitude
      }}
-     onClick={() => console.log("You clicked me!")} />
+     onClick={this.onMarkerClick} />
     })
   }
 
@@ -51,20 +38,48 @@ export class MapsPage extends React.Component {
     }
   }
   
+  onMarkerClick = (props, marker, e) =>
+    this.state({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.state({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
+
   render() {
     return (
       <div className="container-fluid text-center">
         <div className="row justify-content-center">
           <Map
-            google={this.props.google}
-            zoom={14}
-            style={mapStyles}
-            initialCenter={{
+            google={this.props.google} // Google Maps
+            style={mapStyles} // Sizing of Map
+            zoom={14} // How Far We Zoom For Google Map
+            initialCenter={{ // Starting Location (Manhattan)
             lat: 40.7831,
             lng: -73.9712
             }}
+            onClick={this.onMapClicked} // Clickable Map
             >
-            {this.displayMarkers()}
+            <Marker 
+            onClick={this.onMarkerClicked}
+            name={'Current Location'}/>
+            <InfoWindow
+              onOpen={this.windowHasOpened}
+              onClose={this.windowHasClosed}
+              visible={this.state.showingInfoWindow}>
+                <div>
+                  <h1>test</h1>
+                </div>
+            </InfoWindow>
+             {/* {this.displayMarkers()}} */}
             </Map>
             <label className="col-sm-4 col-form-label">{this.props.label}</label>
             <div className="col-xl-8">
