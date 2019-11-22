@@ -23,7 +23,7 @@ router.get('/', (req,res) => {
     })
 })
 
-//get reviews for a bathroom
+//get a bathroom by id
 router.get('/:id', (req,res) => {
     console.log(`calling specific id! ${req.params.id}`);
     bid=req.params.id;
@@ -44,7 +44,11 @@ router.get('/:id', (req,res) => {
 
 //post a new bathroom location
 router.post('/create', (req,res) => {
-    res.send(req.body);
+    let body = req.body;
+    if(!body){
+        //Send user 404 if there is not body
+        res.sendStatus(404);
+    }
 });
 
 //post a review for a bathroom 
