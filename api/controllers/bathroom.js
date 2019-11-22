@@ -14,7 +14,8 @@ router.get('/', (req,res) => {
             res.send("No Bathrooms Found!");
         }
         console.log(bathroom);
-        res.json(bathroom);
+        //res.json(bathroom);
+        res.json(fakeBathrooms);
     })
 })
 
