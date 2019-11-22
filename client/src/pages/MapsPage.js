@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import Geocode from "react-geocode";
 
 const mapStyles = {
@@ -12,7 +12,10 @@ export class MapsPage extends React.Component {
     super(props);
     this.state = {
         bathrooms: [],
-        locations: []
+        locations: [],
+        showingInfoWindow: false,
+        activeMarker: {},
+        selectedPlace: {}
     }
   }
 
@@ -28,57 +31,87 @@ export class MapsPage extends React.Component {
   getAllMarkers = () => {
     //Array of objects containing lat-long information of all bathrooms
     let results = [];
-
     this.state.bathrooms.forEach(bathroom => {
       results.push({
-        latitude:bathroom.latitude,
-        longitude: bathroom.longitude
+        latitude: bathroom.latitude,
+        longitude: bathroom.longitude,
+        name: bathroom.name,
+        address: bathroom.address
       });
     });
-
     return results;
   }
 
+  onMarkerClick = (props, marker, e) =>
+  this.setState({
+    selectedPlace: props,
+    activeMarker: marker,
+    showingInfoWindow: true
+  });
+
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
+
   displayMarkers = () => {
-    return this.state.locations.map((store, index) => {
+    return this.state.locations.map((bathroom, index) => {
       return <Marker key={index} id={index} position={{
-       lat: store.latitude,
-       lng: store.longitude
+        lat: bathroom.latitude,
+        lng: bathroom.longitude
      }}
-     onClick={() => console.log("You clicked me!")} />
+      onClick={this.onMarkerClick} 
+      name = {bathroom.name}
+      address = {bathroom.address}
+      />
     })
   }
+  
 
   getUserLocation = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(this.showPosition)
     }
   }
-  
+
   render() {
     return (
       <div className="container-fluid text-center">
         <div className="row justify-content-center">
           <Map
-            google={this.props.google}
-            zoom={14}
-            style={mapStyles}
-            initialCenter={{
+            google={this.props.google} // Google Maps
+            style={mapStyles} // Sizing of Map
+            zoom={13} // How Far We Zoom For Google Map
+            initialCenter={{ // Starting Location (Manhattan)
             lat: 40.7831,
             lng: -73.9712
             }}
-            >
-            {this.displayMarkers()}
+            onClick={this.onMapClicked} // Clickable Map
+          >
+          {this.displayMarkers()}
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}>
+              <div>
+                <p><b>Name: </b>{this.state.selectedPlace.name}</p>
+                <hr/>
+                <p><b>Location: </b>{this.state.selectedPlace.address}</p>
+              </div>
+          </InfoWindow>
           </Map>
-            <label className="col-sm-4 col-form-label">{this.props.label}</label>
-            <div className="col-xl-8">
-              <input
-                type="text"
-                defaultValue={this.props.value}
-                onChange={this.props.onChange}
-                className="form-control"
-                placeholder={this.props.placeholder} />
-            </div>
+          <label className="col-sm-4 col-form-label">{this.props.label}</label>
+          <div className="col-xl-8">
+            <input
+              type="text"
+              defaultValue={this.props.value}
+              onChange={this.props.onChange}
+              className="form-control"
+              placeholder={this.props.placeholder} />
+          </div>
         </div>
       </div>
     );
