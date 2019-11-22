@@ -14,11 +14,10 @@ router.post('/register', (req,res) => {
         email: req.body.email
     };
     //To do: Insert this user object into postgress using sequealize
-    console.log(user);
-
+    console.log(req.body)
     //To do: Send a response to front end to let it know if creation of user
     //was a success or not
-    res.send(user);
+    res.send(req.body);
 });
 
 module.exports = router; 

@@ -13,6 +13,7 @@ import LoginPage from './pages/LoginPage';
 import MapsPage from './pages/MapsPage';
 import HomePage from './pages/HomePage';
 import BathroomList from './components/bathroom-lists/BathroomList';
+import addBathroom from './pages/addBathroomPage';
 
 import './App.css';
 
@@ -56,6 +57,11 @@ function Navigation(props) {
             Bathroom List
            </NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" exact to="/addBathroom">
+            Add Bathroom
+           </NavLink>
+        </li>
       </ul>
     </div>
     <Link className="navbar-brand" to="/">
@@ -93,6 +99,7 @@ class App extends React.Component {
                 <Route path="/Register" component={RegisterPage} />
                 <Route path="/Login" component={LoginPage} />
                 <Route path="/Maps" component={MapsPage} />
+                <Route path="/addBathroom" component={addBathroom} />
                 <Route path="/" component={HomePage} />
               </Switch>
             </div>

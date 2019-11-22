@@ -43,8 +43,8 @@ router.get('/:id', (req,res) => {
 
 
 //post a new bathroom location
-router.post('/', (req,res) => {
-    
+router.post('/create', (req,res) => {
+    res.send(req.body);
 });
 
 //post a review for a bathroom 
