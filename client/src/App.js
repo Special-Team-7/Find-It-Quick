@@ -10,7 +10,6 @@ import {
 
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
-import MapsPage from './pages/MapsPage';
 import HomePage from './pages/HomePage';
 import BathroomList from './components/bathroom-lists/BathroomList';
 import addBathroom from './pages/addBathroomPage';
@@ -48,7 +47,7 @@ function Navigation(props) {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" exact to="/Maps">
+          <NavLink className="nav-link" exact to="/">
             Google Maps
            </NavLink>
         </li>
@@ -98,7 +97,6 @@ class App extends React.Component {
                 <Route path="/BathroomList" component = {BathroomList} />
                 <Route path="/Register" component={RegisterPage} />
                 <Route path="/Login" component={LoginPage} />
-                <Route path="/Maps" component={MapsPage} />
                 <Route path="/addBathroom" component={addBathroom} />
                 <Route path="/" component={HomePage} />
               </Switch>
