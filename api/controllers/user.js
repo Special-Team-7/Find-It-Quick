@@ -9,7 +9,7 @@ router.get('/', (req,res) => {
 });
 
 router.post('/register', (req,res) => {
-    let user = {
+    let user = { 
         body_id: req.body.id,
         body_name: req.body.name,
         body_email: req.body.email
