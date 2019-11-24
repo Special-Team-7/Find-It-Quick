@@ -1,20 +1,18 @@
 import React from 'react';
-import Post from '../components/Post';
-import Loading from '../components/Loading';
-
+import Maps from '../components/google-maps/Maps';
 
 class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <div className="container-fluid text-center">
-        <div className="row justify-content-center">
-        {
-          <h1>
-            Home Page. Probably Will Be Google Maps. Just For Testing Purposes.
-          </h1>
-        }
+        <div className="container-fluid text-center">
+            <div className="row">
+              <Maps/>
+            </div> 
         </div>
-      </div>
     );
   }
 }

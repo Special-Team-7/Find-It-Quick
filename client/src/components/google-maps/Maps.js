@@ -2,12 +2,12 @@ import React from 'react';
 import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import Geocode from "react-geocode";
 
-const mapStyles = {
+var mapStyles = {
   width: '100%',
   height: '100%'
 };
 
-export class MapsPage extends React.Component {
+export class Maps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -80,39 +80,28 @@ export class MapsPage extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid text-center">
-        <div className="row justify-content-center">
-          <Map
-            google={this.props.google} // Google Maps
-            style={mapStyles} // Sizing of Map
-            zoom={13} // How Far We Zoom For Google Map
-            initialCenter={{ // Starting Location (Manhattan)
-            lat: 40.7831,
-            lng: -73.9712
-            }}
-            onClick={this.onMapClicked} // Clickable Map
-          >
-          {this.displayMarkers()}
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}>
-              <div>
-                <p><b>Name: </b>{this.state.selectedPlace.name}</p>
-                <hr/>
-                <p><b>Location: </b>{this.state.selectedPlace.address}</p>
-              </div>
-          </InfoWindow>
-          </Map>
-          <label className="col-sm-4 col-form-label">{this.props.label}</label>
-          <div className="col-xl-8">
-            <input
-              type="text"
-              defaultValue={this.props.value}
-              onChange={this.props.onChange}
-              className="form-control"
-              placeholder={this.props.placeholder} />
-          </div>
-        </div>
+      <div>
+        <Map
+          google={this.props.google} // Google Maps
+          style={mapStyles} // Sizing of Map
+          zoom={13} // How Far We Zoom For Google Map
+          initialCenter={{ // Starting Location (Manhattan)
+          lat: 40.7831,
+          lng: -73.9712
+          }}
+          onClick={this.onMapClicked} // Clickable Map
+        >
+        {this.displayMarkers()}
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+            <div>
+              <p><b>Name: </b>{this.state.selectedPlace.name}</p>
+              <hr/>
+              <p><b>Location: </b>{this.state.selectedPlace.address}</p>
+            </div>
+        </InfoWindow>
+        </Map>
       </div>
     );
   }
@@ -120,4 +109,4 @@ export class MapsPage extends React.Component {
 
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyCw1Cu5QmZqsFLWq-D7m12E3Qqjjj13xWY'
-})(MapsPage);
+})(Maps);
