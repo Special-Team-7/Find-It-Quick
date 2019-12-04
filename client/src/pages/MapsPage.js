@@ -54,15 +54,15 @@ export class MapsPage extends React.Component {
         navigator.geolocation.getCurrentPosition(this.showPosition)
     }
   }
-  
+
   render() {
     return (
       <div className="container-fluid text-center">
-        <div className="row justify-content-center">
+        <div className="row justify-content-center" style={{position: 'static'}}>
           <Map
             google={this.props.google}
             zoom={14}
-            style={mapStyles}
+            style={this.props.mapStyles ? this.props.mapStyles : mapStyles}
             initialCenter={{
             lat: 40.7831,
             lng: -73.9712
