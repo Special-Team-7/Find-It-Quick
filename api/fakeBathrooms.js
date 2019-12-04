@@ -1,8 +1,6 @@
 var faker = require('faker');
 var uuid = require('uuid');
 
-//To Do: Use faker to generate fake bathroom data to populate database 
-
 const fakeBathrooms = [];
 
 //Making 10 fake bathrooms

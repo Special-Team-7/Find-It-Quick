@@ -44,16 +44,26 @@ router.get('/:id', (req,res) => {
 
 //post a new bathroom location
 router.post('/create', (req,res) => {
-    let body = req.body;
-    if(!body){
+    let bathroom = req.body;
+    if(!bathroom){
         //Send user 404 if there is not body
         res.sendStatus(404);
     }
+    console.log(bathroom);
+    //Put the bathroom on the database
+    Bathroom.create({name:bathroom.name, address:bathroom.address, latitude:bathroom.latitude, 
+        longitude:bathroom.longitude, category:bathroom.category, rating:bathroom.rating}).then(task => {
+            res.sendStatus(200);
+            console.log(`Looks good?: ${task}`);
+        }).catch(err => {
+            console.log(`Error!: ${err}`)
+            res.send(err);
+        })
 });
 
 //post a review for a bathroom 
 router.delete('/', (req,res) => {
-    
+     
 });
 
 

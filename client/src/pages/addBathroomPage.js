@@ -7,8 +7,11 @@ export default class addBathroomPage extends React.Component {
         this.state = {
             name:"",
             address:"",
+            latitude:"40.857561",
+            longitude: "-73.971667",
             zipcode:"",
-            category:"free" //initialized to the first item of the list
+            category:"free", //initialized to the first item of the list
+            rating: 3.0
         }
     }
 
@@ -30,7 +33,7 @@ export default class addBathroomPage extends React.Component {
 
     submitBathroom = () => {
         // Make post request to save on the DB
-        fetch('/api/bathroom/create',{
+        fetch('/api/bathrooms/create',{
             method:'POST',
             body: JSON.stringify(this.state),
             headers: {
@@ -49,11 +52,13 @@ export default class addBathroomPage extends React.Component {
     render() {
         return (
             <div>
+                <h2>Enter a New Bathroom</h2>
+                <br/>
                 <form>
-                    {"Business Name: "}<input type="text" placeholder="eg. McDonald's" onChange={this.nameChanged}></input>
+                    <h5>Business Name: <input type="text" placeholder="eg. McDonald's" onChange={this.nameChanged}></input> </h5>
                     <br/>
                     <br/>
-                    {"Business Address: "}<input type="text" placeholder="eg. 1188 6th Ave New York" onChange={this.addressChanged}></input>
+                    <h5>Business Address: <input type="text" placeholder="eg. 1188 6th Ave New York" onChange={this.addressChanged}></input></h5>
                     <br/>
                     <br/>
                     {"Zipcode: "}<input type="text" placeholder="eg. 11434" onChange={this.zipcodeChanged}></input>
