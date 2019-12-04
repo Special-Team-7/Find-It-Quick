@@ -3,7 +3,6 @@ import Rating from 'react-rating'
 import {Link} from 'react-router-dom';
 import StarBlue from '../public/star-blue.png';
 import StarGray from '../public/star-gray.png';
-import Maps from './MapsPage';
 import '../index.css';
 
 

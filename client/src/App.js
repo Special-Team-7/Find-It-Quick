@@ -10,11 +10,11 @@ import {
 
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
-import MapsPage from './pages/MapsPage';
 import HomePage from './pages/HomePage';
 import BathroomPage from './pages/BathroomPage';
 import BathroomList from './components/bathroom-lists/BathroomList';
 import ReviewPage from './pages/ReviewPage';
+import addBathroom from './pages/addBathroomPage';
 
 import './App.css';
 
@@ -49,13 +49,18 @@ function Navigation(props) {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" exact to="/Maps">
+          <NavLink className="nav-link" exact to="/">
             Google Maps
            </NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" exact to="/BathroomList">
             Bathroom List
+           </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" exact to="/addBathroom">
+            Add Bathroom
            </NavLink>
         </li>
       </ul>
@@ -94,12 +99,12 @@ class App extends React.Component {
                 <Route path="/BathroomList" component = {BathroomList} />
                 <Route path="/Register" component={RegisterPage} />
                 <Route path="/Login" component={LoginPage} />
-                <Route path="/Maps" component={MapsPage} />
                 <Route path="/bathroom/:bathroomId" component={BathroomPage}/>
                 <Route path="/bathroom" component={BathroomPage}/>
                 {/*TODO: Bathroom Page route should contain bathroom ID from the API call and passed as a prop*/}
                 <Route path="/BathroomPage" component={BathroomPage} />
                 <Route path="/review/:reviewId" component={ReviewPage} />
+                <Route path="/addBathroom" component={addBathroom} />
                 <Route path="/" component={HomePage} />
               </Switch>
             </div>
