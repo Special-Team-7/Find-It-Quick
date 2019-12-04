@@ -41,13 +41,13 @@ class BathroomPage extends React.Component {
         <h4 className="col-6 pl-3 font-weight-bold text-left text-capitalized">Reviews</h4>
         <Rating
           initialRating={this.state.bathroom.average_rating}
-          readonly={false}
+          readonly={true}
           emptySymbol={<img src={StarGray}/>}
           fullSymbol={<img src={StarBlue}/>}
           fractions={2}
         />
         <div style={{color: 'black'}}  className="col-sm-12 text-left">{this.state.bathroom.review}</div>
-        <Link style={{color: 'blue'}} className="pl-3" to={`/review${this.state.bathroom.id}`}>View all reviews</Link>
+        <Link style={{color: 'blue'}} className="pl-3" to={`/review/${this.state.bathroom.id}`}>View all reviews</Link>
         <hr/>
         <div className="col-12" style={{margin: 'auto'}}><Maps mapStyles={mapStyles}/></div>
 
