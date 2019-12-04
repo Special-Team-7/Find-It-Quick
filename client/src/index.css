@@ -12,3 +12,12 @@ code {
     monospace;
 }
 */
+font-family: 'Abril Fatface', cursive;
+
+#abril {
+}
+
+.abrilc {
+  font-family: "Abril Fatface";
+  color: black;
+}

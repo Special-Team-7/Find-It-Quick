@@ -14,6 +14,7 @@ import MapsPage from './pages/MapsPage';
 import HomePage from './pages/HomePage';
 import BathroomPage from './pages/BathroomPage';
 import BathroomList from './components/bathroom-lists/BathroomList';
+import ReviewPage from './pages/ReviewPage';
 
 import './App.css';
 
@@ -98,6 +99,7 @@ class App extends React.Component {
                 <Route path="/bathroom" component={BathroomPage}/>
                 {/*TODO: Bathroom Page route should contain bathroom ID from the API call and passed as a prop*/}
                 <Route path="/BathroomPage" component={BathroomPage} />
+                <Route path="/review/:reviewId" component={ReviewPage} />
                 <Route path="/" component={HomePage} />
               </Switch>
             </div>
@@ -114,4 +116,3 @@ export default withFirebaseAuth({
   providers,
   firebaseAppAuth,
 })(App);
-
