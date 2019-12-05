@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { 
-  BrowserRouter as Router, 
-  Switch, 
+import {
+  BrowserRouter as Router,
+  Switch,
   Route,
   Link,
   NavLink
@@ -13,6 +13,8 @@ import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import BathroomList from './components/bathroom-lists/BathroomList';
 import addBathroom from './pages/addBathroomPage';
+import BathroomPage from './pages/BathroomPage';
+//import ReviewPage from './pages/ReviewPage';
 
 import './App.css';
 
@@ -36,12 +38,12 @@ function Navigation(props) {
     </button>
     <div className="collapse navbar-collapse aria-expanded=false" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
-        <li className="nav-item"> 
+        <li className="nav-item">
           <NavLink className="nav-link" exact to="/Login">
             Login
           </NavLink>
         </li>
-        <li className="nav-item"> 
+        <li className="nav-item">
           <NavLink className="nav-link" exact to="/Register">
             Register
           </NavLink>
@@ -97,8 +99,13 @@ class App extends React.Component {
                 <Route path="/BathroomList" component = {BathroomList} />
                 <Route path="/Register" component={RegisterPage} />
                 <Route path="/Login" component={LoginPage} />
+                <Route path="/bathroom/:bathroomId" component={BathroomPage}/>
                 <Route path="/addBathroom" component={addBathroom} />
                 <Route path="/" component={HomePage} />
+                <Route path="/BathroomPage" component={BathroomPage} />
+                <Route path="/test" component={BathroomPage} />
+                {/*<Route path="/review/:reviewId" component={ReviewPage} />*/}
+
               </Switch>
             </div>
           </div>
@@ -114,4 +121,3 @@ export default withFirebaseAuth({
   providers,
   firebaseAppAuth,
 })(App);
-
