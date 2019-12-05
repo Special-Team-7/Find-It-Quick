@@ -10,6 +10,7 @@
     "react-dom": "^16.10.1",
     "react-geocode": "^0.2.1",
     "react-google-autocomplete": "^1.1.2",
+    "react-rating": "^2.0.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
     "react-with-firebase-auth": "^1.1.0"
