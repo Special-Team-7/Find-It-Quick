@@ -16,13 +16,15 @@ function BathroomCell(bathroom) {
             </div>
             <div className="col-9">
               <div className='col'>
+                <p>
                 <Link to={{
                   pathname:  `/bathroom/${bathroom.id}`,
                   state: {id: bathroom.id}
                 }}> Name: {bathroom.name} </Link>
+                </p>
               </div>
               <div className='col'>
-                <p>Rating: {bathroom.average_rating} </p>
+                <p>Rating: {bathroom.rating} </p>
               </div>
               <div className='col'>
                 <p>Category: {bathroom.category} </p>
@@ -32,6 +34,8 @@ function BathroomCell(bathroom) {
               </div>
            </div>
           </div>
+          <br/>
+          <hr></hr>
         </div>
 
 
