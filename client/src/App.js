@@ -14,7 +14,7 @@ import HomePage from './pages/HomePage';
 import BathroomList from './components/bathroom-lists/BathroomList';
 import addBathroom from './pages/addBathroomPage';
 import BathroomPage from './pages/BathroomPage';
-//import ReviewPage from './pages/ReviewPage';
+import ReviewPage from './pages/ReviewPage';
 
 import './App.css';
 
@@ -101,10 +101,10 @@ class App extends React.Component {
                 <Route path="/Login" component={LoginPage} />
                 <Route path="/bathroom/:bathroomId" component={BathroomPage}/>
                 <Route path="/addBathroom" component={addBathroom} />
-                <Route path="/" component={HomePage} />
+                <Route path="/review/:reviewId" component={ReviewPage} />
                 <Route path="/BathroomPage" component={BathroomPage} />
-                <Route path="/test" component={BathroomPage} />
-                {/*<Route path="/review/:reviewId" component={ReviewPage} />*/}
+                <Route path="/" component={HomePage} />
+
 
               </Switch>
             </div>

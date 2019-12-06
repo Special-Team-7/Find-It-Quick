@@ -11,4 +11,53 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#abril {
+  font-family: "Abril Fatface";
+  color: black;
+}
 */
+
+/*Theme Colors*/
+.darkgray {
+  color: #4A4A4A;
+}
+
+.skyblue {
+  color: #D8E7F9;
+}
+
+.navy {
+  color: #303BA2;
+}
+
+.purple {
+  color: #9597D5;
+}
+
+/*Theme Font*/
+.abrilfont {
+  font-family: "Abril Fatface";
+  color: black;
+}
+
+
+/*Screen Sizes*/
+@media screen and (min-width: 601px) {
+  div.subtitle {
+    font-size: 25px;
+  }
+  div.title {
+    font-size: 40px;
+  }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  div.subtitle {
+    font-size: 20px;
+  }
+  div.title {
+    font-size: 30px;
+  }
+}
