@@ -20,6 +20,7 @@ class BathroomList extends Component {
       return (
         <div>
           <h2>List of bathrooms</h2>
+          <br/>
             {this.state.bathrooms.map(bathroom => { 
               return <BathroomCell key={bathroom.id} bathroom={bathroom}></BathroomCell>
             })}

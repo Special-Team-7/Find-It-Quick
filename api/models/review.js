@@ -3,7 +3,7 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
 	class Review extends Model {}
-  
+
 	Review.init({
 		UID: {
 			type: DataTypes.TEXT,
@@ -32,16 +32,16 @@ module.exports = (sequelize, DataTypes) => {
 		review: {
 			type: DataTypes.TEXT,
 			allowNull: true,
-			defaultValue: '1',
-			field: 'rating'
+			defaultValue: 'no review',
+			field: 'review'
 		}
 	}, {
-	  // PUT THE NAME OF THE CLASS BELOW 
+	  // PUT THE NAME OF THE CLASS BELOW
 	  sequelize,
 	  modelName: 'review'
 	});
 
 
-  
+
 	return Review;
   };

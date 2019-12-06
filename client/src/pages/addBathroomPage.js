@@ -1,4 +1,5 @@
 import React from 'react';
+import Autocomplete from 'react-google-autocomplete';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import './addBathroomPage.css';
@@ -59,8 +60,16 @@ export default class addBathroomPage extends React.Component {
         this.setState({rating: e.target.value})
     }
 
+    selectPlace = (place) => {   
+        this.setState({
+            latitude: place.geometry.location.lat(),
+            longitude: place.geometry.location.lng(),
+            address: place.formatted_address
+        });
+    }
 
     submitBathroom = () => {
+
         // Make post request to save on the DB
         fetch('/api/bathrooms/create',{
             method:'POST',
@@ -86,21 +95,12 @@ export default class addBathroomPage extends React.Component {
                 <form>
                     <h5>Business Name: <input type="text" placeholder="eg. McDonald's" onChange={this.nameChanged}></input> </h5>
                     <br/>
-                    <br/>
-                    <h5>Business Address: <input type="text" placeholder="eg. 1188 6th Ave New York" onChange={this.addressChanged}></input></h5>
-                    <br/>
-                    <br/>
-                    <h5>Zip Code: <input type="text" placeholder="eg. 11434" onChange={this.zipcodeChanged}></input></h5>
-                    <br/>
-                    <br/>
-                    <h5>Latitude: <input type="text" placeholder="eg. 40.857561" onChange={this.latChanged}></input></h5>
-                    <br/>
-                    <br/>
-                    <h5>Longitude:<input type="text" placeholder="eg. -73.971667" onChange={this.longChanged}></input></h5>
+                    <h5> Location:
+                    <Autocomplete style={{width: '90%', display:'inline'}} onPlaceSelected={this.selectPlace} types={['establishment']} componentRestrictions={{country: "us"}}/>
+                    </h5>
                     <br/>
                     <br/>
                     <h5>Rating: <input type="text" placeholder="eg. 1...5" onChange={this.ratingChanged}></input></h5>
-                    <br/>
                     <br/>
                     <h5> Category: 
                     <select onChange={this.categoryChanged}>
