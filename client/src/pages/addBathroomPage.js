@@ -1,6 +1,7 @@
 import React from 'react';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import {Link} from 'react-router-dom';
 
 export default class addBathroomPage extends React.Component {
 
@@ -16,6 +17,19 @@ export default class addBathroomPage extends React.Component {
             rating: 0
         }
     }
+
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                console.log(`User logged with ${user.email}`);
+              // ...
+            } else {
+              // User is not logged in, make them loggin to add bathroom 
+                this.props.history.push("/Login");
+            }
+        })
+    }
+
 
     nameChanged = (e) => {
         this.setState({name: e.target.value});
@@ -64,17 +78,6 @@ export default class addBathroomPage extends React.Component {
           }) 
     }
 
-    onLoginChanged = firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            console.log(`User logged with ${user.email}`)
-          // ...
-        } else {
-          // User is signed out.
-            console.log('User logged out')
-          // ...
-        }
-    })
-
     render() {
         return (
             <div>
@@ -112,3 +115,5 @@ export default class addBathroomPage extends React.Component {
         );
     }
 }
+
+
