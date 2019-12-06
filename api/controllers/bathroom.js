@@ -47,7 +47,6 @@ router.post('/create', (req,res) => {
         //Send user 404 if there is not body
         res.sendStatus(404);
     }
-    console.log(bathroom);
     //Put the bathroom on the database
     Bathroom.create({name:bathroom.name, address:bathroom.address, latitude:bathroom.latitude, 
         longitude:bathroom.longitude, category:bathroom.category, rating:bathroom.rating}).then(task => {
