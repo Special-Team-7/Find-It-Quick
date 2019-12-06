@@ -32,8 +32,7 @@ module.exports = (sequelize, DataTypes) => {
 		review: {
 			type: DataTypes.TEXT,
 			allowNull: true,
-			defaultValue: '1',
-			field: 'rating'
+			field: 'review'
 		}
 	}, {
 	  // PUT THE NAME OF THE CLASS BELOW 
