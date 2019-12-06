@@ -25,7 +25,6 @@ router.get('/', (req,res) => {
 
 //get a bathroom by id
 router.get('/:id', (req,res) => {
-    console.log(`calling specific id! ${req.params.id}`);
     bid=req.params.id;
     Bathroom.findOne({
         where: {
@@ -35,7 +34,6 @@ router.get('/:id', (req,res) => {
         if(!bathroom){
             res.sendStatus(404);
         }
-        console.log(bathroom);
         res.json(bathroom);
     })
 });
