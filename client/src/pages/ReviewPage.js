@@ -5,8 +5,7 @@ import StarBlue from '../public/star-blue.png';
 import StarGray from '../public/star-gray.png';
 import '../index.css';
 
-
-
+//Placeholder data until we can fetch reviews
 const Review = [
     {Name: 'Tommy S.', UID: '1', BID: '1', Rating: 1, Review: 'Lorem ipsum dolor amet woke small batch vaporware, synth palo santo succulents heirloom iceland pug cloud bread seitan crucifix distillery snackwave hoodie. Food truck banjo squid sustainable, fanny pack twee butcher drinking'},
     {Name: 'Michael B.', UID: '2', BID: '1', Rating: 4, Review: 'wolf moon celiac mixtape messenger bag hoodie palo santo hella. Roof party fixie retro, mixtape thundercats bushwick tilde authentic'},
@@ -14,7 +13,6 @@ const Review = [
 ]
 
 function RatingCell(review) {
-
   console.log(review.review.Rating)
   return (
     <div className="container">
@@ -51,8 +49,6 @@ class ReviewPage extends React.Component {
     //TODO: API call for reviews based on bathroom ID
   }
 
-
-
   render() {
     return (
       <div className="container">
@@ -69,13 +65,8 @@ class ReviewPage extends React.Component {
           </div>
         </div>
       </div>
-
     );
   }
 }
 
 export default ReviewPage;
-
-/*
-TODO: fix route for review
-*/
