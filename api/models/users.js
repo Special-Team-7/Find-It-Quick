@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false,
 			primaryKey: true,
 			field: 'id'
-		},
+		}, 
 		name: {
 			type: DataTypes.TEXT,
 			allowNull: false,
