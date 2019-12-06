@@ -1,7 +1,6 @@
 import React from 'react';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import {Link} from 'react-router-dom';
 
 export default class addBathroomPage extends React.Component {
 
