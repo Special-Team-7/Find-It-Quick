@@ -7,7 +7,6 @@ import {Link} from 'react-router-dom';
 function BathroomCell(bathroom) {
     {bathroom = bathroom.bathroom};
     //Construct the bathroom URL for street view
-    console.log(bathroom)
     bathroom.url = `https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${bathroom.latitude},${bathroom.longitude}&fov=80&heading=180&pitch=0&key=`+process.env.REACT_APP_GOOGLE_MAPS_KEY;
     return(
         <div className="container">
