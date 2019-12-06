@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 
 function BathroomCell(bathroom) {
     {bathroom = bathroom.bathroom};
+
     return(
         <div className="container">
           <div className="row">

@@ -1,4 +1,9 @@
 import React from 'react';
+import Autocomplete from 'react-google-autocomplete';
+
+
+
+
 
 export default class addBathroomPage extends React.Component {
 
@@ -43,8 +48,15 @@ export default class addBathroomPage extends React.Component {
         this.setState({rating: e.target.value})
     }
 
+    selectPlace = (place) => {    
+        this.setState({
+            latitude: place.geometry.location.lat(),
+            longitude: place.geometry.location.lng()
+        });
+    }
 
     submitBathroom = () => {
+
         // Make post request to save on the DB
         fetch('/api/bathrooms/create',{
             method:'POST',
@@ -86,6 +98,10 @@ export default class addBathroomPage extends React.Component {
                     <h5>Rating: <input type="text" placeholder="eg. 1...5" onChange={this.ratingChanged}></input></h5>
                     <br/>
                     <br/>
+                    
+                    <Autocomplete style={{width: '90%'}} onPlaceSelected={this.selectPlace} types={['establishment']} componentRestrictions={{country: "us"}}/>
+
+
                     <h5> Category: 
                     <select onChange={this.categoryChanged}>
                         <option value="free">Free</option>
