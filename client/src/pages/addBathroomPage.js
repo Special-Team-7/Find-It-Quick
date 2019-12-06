@@ -2,6 +2,7 @@ import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import './addBathroomPage.css';
 
 export default class addBathroomPage extends React.Component {
 

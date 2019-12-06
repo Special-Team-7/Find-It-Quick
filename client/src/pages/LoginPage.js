@@ -1,8 +1,7 @@
 import React from 'react';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-
-
+import './LoginPage.css';
 
 export default class LoginPage extends React.Component {
 
@@ -63,24 +62,22 @@ export default class LoginPage extends React.Component {
   render() {
 
     return (
-      <div className="App">
-          <header className="App-header">
-            <h4>Sign in!</h4>
-            <form>
-              <br/>
-              {"Email:"}<input type="text" placeholder="no-reply@finditquick.com" onChange={this.emailChanged}></input>
-              <br/>
-              <br/>
-              {"Password"}<input type="password" placeholder="*********" onChange={this.passChanged}></input>
-              <br/>
-              <br/>
-            </form>
-            <button onClick={this.loginUser}>Login</button>
-            <button onClick={this.logoutUser}>Logout</button>
-            <br/>
-            <br/>
-            <h4>Welcome {this.state.name+'!'}</h4>
-          </header>
+      <div className = "loginbox">
+        <h4><u>Login Page</u></h4>
+        <form>
+          <p>Email</p>
+          <input type="text" placeholder="Enter Email" onChange={this.emailChanged}></input>
+          <br/>
+          <br/>
+          <p>Password</p>
+          <input type="password" placeholder="Enter Password" onChange={this.passChanged}></input>
+        </form>
+        <button type="button" className="btn btn-primary" onClick={this.loginUser}> Login </button> 
+        <br/>
+        <br/>
+        <button type="button" className="btn btn-primary" onClick={this.logoutUser}> Logout </button>
+        <hr/>
+      <h4>Welcome {this.state.name+'!'}</h4>
     </div>
     );
   }

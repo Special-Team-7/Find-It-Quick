@@ -1,6 +1,6 @@
 import React from 'react';
 import * as firebase from 'firebase/app';
-
+import './RegisterPage.css';
 
 export default class RegisterPage extends React.Component {
       state = {
@@ -63,25 +63,21 @@ export default class RegisterPage extends React.Component {
     render() {
 
       return (
-        <div className="App">
-            <header className="App-header">
-            <h4>Fill the form below to Register!</h4>
+        <div className="registerbox">
+            <h4><u>Fill the Form Below to Register!</u></h4>
             <form>
-              <br/>
-              {"Name:"}<input type="text" placeholder="Your Name" onChange={this.nameChanged}></input>
-              <br/>
-              <br/>
-              {"Email:"}<input type="text" placeholder="no-reply@finditquick.com" onChange={this.emailChanged}></input>
+              <p>Name</p>
+              <input type="text" placeholder="Enter Name" onChange={this.nameChanged}></input>
               <br/>
               <br/>
-              {"Password"}<input type="password" placeholder="*********" onChange={this.passChanged}></input>
+              <p>Email</p>
+              <input type="text" placeholder="Enter Email" onChange={this.emailChanged}></input>
               <br/>
               <br/>
+              <p>Password</p>
+              <input type="password" placeholder="Enter Password" onChange={this.passChanged}></input>
             </form>
-
-            <button onClick={this.createUser}>Sign Up</button>
-
-            </header>
+            <button type="button" className="btn btn-primary" onClick={this.createUser}>Sign Up</button>
       </div>
       );
     

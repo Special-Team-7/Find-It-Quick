@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import Geocode from "react-geocode";
+import {Link} from 'react-router-dom';
 
 var mapStyles = {
   width: '100%',

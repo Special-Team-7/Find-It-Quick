@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import StarBlue from '../public/star-blue.png';
 import StarGray from '../public/star-gray.png';
 import '../index.css';
+import './ReviewPage.css';
 
 //Placeholder data until we can fetch reviews
 const Review = [
