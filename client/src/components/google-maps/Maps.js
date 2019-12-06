@@ -33,6 +33,7 @@ export class Maps extends React.Component {
     let results = [];
     this.state.bathrooms.forEach(bathroom => {
       results.push({
+        id: bathroom.id,
         latitude: bathroom.latitude,
         longitude: bathroom.longitude,
         name: bathroom.name,

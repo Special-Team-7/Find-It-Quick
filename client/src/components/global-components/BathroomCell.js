@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './BathroomCell.css';
-import logo from '../../public/logo192.png';
 import {Link} from 'react-router-dom';
 
 
