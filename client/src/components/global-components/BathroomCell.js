@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './BathroomCell.css';
 import logo from '../../public/logo192.png';
+import {Link} from 'react-router-dom';
 
 
 function BathroomCell(bathroom) {
@@ -13,7 +14,10 @@ function BathroomCell(bathroom) {
             </div>
             <div className="col-9">
               <div className='col'>
-                <p>Business Name:{bathroom.name} </p>
+                <Link to={{
+                  pathname:  `/bathroom/${bathroom.id}`,
+                  state: {id: bathroom.id}
+                }}> Name: {bathroom.name} </Link>
               </div>
               <div className='col'>
                 <p>Rating: {bathroom.average_rating} </p>
