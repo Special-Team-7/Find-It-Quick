@@ -12,7 +12,19 @@ export default class LoginPage extends React.Component {
     name:""
   };
 
-  emailChanged = (e) => {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+          this.setState({name: user.displayName});
+        // ...
+      } else {
+        // User is not logged in, make them loggin to add bathroom 
+          this.props.history.push("/Login");
+      }
+  })
+  }
+
+  emailChanged = (e) => { 
     this.setState({
       email: e.target.value
     })
@@ -37,6 +49,17 @@ export default class LoginPage extends React.Component {
     });
   }
 
+  logoutUser = (e) => {
+    firebase.auth().signOut().then(() => {
+      //Logged out sucessful
+      console.log('Logged user out successfully');
+      this.setState({name: ""});
+    }).catch((err) => {
+      //Handle error
+      console.log(`Error: ${err}`);
+    })
+  }
+
   render() {
 
     return (
@@ -53,6 +76,7 @@ export default class LoginPage extends React.Component {
               <br/>
             </form>
             <button onClick={this.loginUser}>Login</button>
+            <button onClick={this.logoutUser}>Logout</button>
             <br/>
             <br/>
             <h4>Welcome {this.state.name+'!'}</h4>
