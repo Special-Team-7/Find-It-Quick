@@ -1,4 +1,6 @@
 import React from 'react';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 export default class addBathroomPage extends React.Component {
 
@@ -61,6 +63,17 @@ export default class addBathroomPage extends React.Component {
             }
           }) 
     }
+
+    onLoginChanged = firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            console.log(`User logged with ${user.email}`)
+          // ...
+        } else {
+          // User is signed out.
+            console.log('User logged out')
+          // ...
+        }
+    })
 
     render() {
         return (
