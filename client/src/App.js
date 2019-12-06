@@ -22,7 +22,7 @@ import './App.css';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import firebaseConfig from './firebaseConfig';
+import firebaseConfig from './components/firebase/firebaseConfig';
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();
@@ -66,15 +66,9 @@ function Navigation(props) {
       </ul>
     </div>
     <Link className="navbar-brand" to="/">
-      <img src={ require('./public/logo.png')} width = "70px" height="40px" />
+      <img src={ require('./public/logo.png')} width = "70px" height="40px" alt = "Logo" />
       Find It Quick
     </Link>
-    {/* <div className="collapse navbar-collapse aria-expanded=false" id="navbarSupportedContent" >
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div> */}
   </nav>
   );
 }

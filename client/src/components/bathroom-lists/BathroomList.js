@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import BathroomCell from '../global-components/BathroomCell';
-import './BathroomList.css';
 
 class BathroomList extends Component {
     constructor() {

@@ -1,12 +1,12 @@
 var firebaseConfig = {
-  apiKey: "AIzaSyCCNRpsUKeuaT4SFykPC0RBzXQ5e6ARdik",
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "find-it-quick.firebaseapp.com",
   databaseURL: "https://find-it-quick.firebaseio.com",
   projectId: "find-it-quick",
   storageBucket: "find-it-quick.appspot.com",
-  messagingSenderId: "1088172552185",
-  appId: "1:1088172552185:web:7d353878174a3133e79728",
-  measurementId: "G-NT3WL32G8Q"
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGEINGSENDERID,
+  appId: process.env.REACT_APP_FIREBASE_APPID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
 };
 
 export default firebaseConfig;
