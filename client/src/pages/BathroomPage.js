@@ -3,6 +3,7 @@ import Rating from 'react-rating'
 import {Link} from 'react-router-dom';
 import StarBlue from '../public/star-blue.png';
 import StarGray from '../public/star-gray.png';
+import '../index.css';
 //import Maps from '../components/google-maps/Maps';
 
 class BathroomPage extends React.Component {

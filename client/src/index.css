@@ -41,7 +41,6 @@ code {
   color: black;
 }
 
-
 /*Screen Sizes*/
 @media screen and (min-width: 601px) {
   div.subtitle {
@@ -50,6 +49,16 @@ code {
   div.title {
     font-size: 40px;
   }
+}
+
+/*Gray divider*/
+hr {
+border: 0;
+clear:both;
+display:block;
+width: 96%;
+background-color:lightgray;
+height: 2px;
 }
 
 /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
