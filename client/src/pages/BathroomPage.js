@@ -3,7 +3,6 @@ import Rating from 'react-rating'
 import {Link} from 'react-router-dom';
 import StarBlue from '../public/star-blue.png';
 import StarGray from '../public/star-gray.png';
-import '../index.css';
 import './BathroomPage.css';
 //import Maps from '../components/google-maps/Maps';
 
@@ -38,9 +37,9 @@ class BathroomPage extends React.Component {
     }
 
     return (
-      <div className="container">
+      <div className="jumbotron BathroomPageBox">
       <div className="row">
-        <img className="col-12 img-fluid" src="https://via.placeholder.com/40x30"/>
+        <img className="col-6 img-fluid center" src="https://via.placeholder.com/40x30"/>
         <h2 className="col-8 pt-3 pl-3 font-weight-bold text-left">{this.state.bathroom.name}</h2>
         <h5 className="col-8 pl-3 text-left">{this.state.bathroom.address}</h5>
         <hr/>

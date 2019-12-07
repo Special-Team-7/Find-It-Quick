@@ -5,7 +5,6 @@ import 'firebase/auth';
 import './addBathroomPage.css';
 
 export default class addBathroomPage extends React.Component {
-
     constructor() {
         super();
         this.state = {
@@ -89,7 +88,7 @@ export default class addBathroomPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="jumbotron box">
                 <h2>Enter a New Bathroom</h2> 
                 <br/>
                 <form>
@@ -98,7 +97,6 @@ export default class addBathroomPage extends React.Component {
                     <h5> Location:
                     <Autocomplete style={{width: '90%', display:'inline'}} onPlaceSelected={this.selectPlace} types={['establishment']} componentRestrictions={{country: "us"}}/>
                     </h5>
-                    <br/>
                     <br/>
                     <h5>Rating: <input type="text" placeholder="eg. 1...5" onChange={this.ratingChanged}></input></h5>
                     <br/>
@@ -110,7 +108,7 @@ export default class addBathroomPage extends React.Component {
                     </h5>
                 </form>
                 <br/>
-                <button onClick={this.submitBathroom}>Submit</button>
+                <button type="button" className= "btn btn-primary" onClick={this.submitBathroom}>Submit</button>
             </div>
         );
     }

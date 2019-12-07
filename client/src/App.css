@@ -28,7 +28,7 @@
 } */
 
 body { 
-  padding-top: 100px; 
+  padding-top: 95px; 
   background: url("public/background.jpg") no-repeat center fixed !important;
   background-size: cover !important;
 }

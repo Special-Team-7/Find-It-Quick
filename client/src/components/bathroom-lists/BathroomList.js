@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import BathroomCell from '../global-components/BathroomCell';
+import './BathroomList.css';
 
 class BathroomList extends Component {
     constructor() {
@@ -18,8 +19,8 @@ class BathroomList extends Component {
 
     render() {
       return (
-        <div>
-          <h2>List of bathrooms</h2>
+        <div className="BathroomListBox">
+          <h2><u>List of Bathrooms</u></h2>
           <br/>
             {this.state.bathrooms.map(bathroom => { 
               return <BathroomCell key={bathroom.id} bathroom={bathroom}></BathroomCell>

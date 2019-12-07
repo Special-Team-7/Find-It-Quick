@@ -1,0 +1,8 @@
+.BathroomCellBox{
+    opacity: 0.95;
+    filter: alpha(opacity=95); /* For IE8 and earlier */
+}
+
+.BathroomCellBox p{
+    color: black;
+}
