@@ -9,19 +9,19 @@ function BathroomCell(bathroom) {
     //Construct the bathroom URL for street view
     bathroom.url = `https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${bathroom.latitude},${bathroom.longitude}&fov=80&heading=180&pitch=0&key=`+process.env.REACT_APP_GOOGLE_MAPS_KEY;
     return(
-        <div className="container">
+        <div className="jumbotron BathroomCellBox">
           <div className="row">
             <div className="col-3">
-              <img className="img-fluid" src={bathroom.url}/>
+              <img className="img-fluid" src={bathroom.url} alt = "Bathroom"/>
             </div>
             <div className="col-9">
               <div className='col'>
-                <p>
+                <h5>
                 <Link to={{
                   pathname:  `/bathroom/${bathroom.id}`,
                   state: {id: bathroom.id}
                 }}> Name: {bathroom.name} </Link>
-                </p>
+                </h5>
               </div>
               <div className='col'>
                 <p>Rating: {bathroom.rating} </p>
@@ -34,8 +34,6 @@ function BathroomCell(bathroom) {
               </div>
            </div>
           </div>
-          <br/>
-          <hr></hr>
         </div>
 
 

@@ -1,9 +1,7 @@
 import React from 'react';
 import Rating from 'react-rating'
-import {Link} from 'react-router-dom';
 import StarBlue from '../public/star-blue.png';
 import StarGray from '../public/star-gray.png';
-import '../index.css';
 import './ReviewPage.css';
 
 //Placeholder data until we can fetch reviews
@@ -25,8 +23,8 @@ function RatingCell(review) {
           <Rating
             initialRating={review.review.Rating}
             readonly={true}
-            emptySymbol={<img src={StarGray}/>}
-            fullSymbol={<img src={StarBlue}/>}
+            emptySymbol={<img src={StarGray} alt = "StarGray"/>}
+            fullSymbol={<img src={StarBlue} alt = "StarBlue"/>}
             fractions={2}
           />
         </div>
@@ -52,11 +50,11 @@ class ReviewPage extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="jumbotron ReviewPageBox">
         <div className="row">
           <div className="col-12">
             <br/>
-            <div className="title text-left" style={{color: '#3E3E3E', fontWeight: 'bold'}}>Reviews</div>
+            <div className="title text-left"><h1><u>Reviews</u></h1></div>
             <br/>
             {this.state.reviews.map((review, index) => {
               return (
