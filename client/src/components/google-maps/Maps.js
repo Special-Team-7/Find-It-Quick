@@ -1,7 +1,7 @@
 import React from 'react';
 import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
-import Geocode from "react-geocode";
-import {Link} from 'react-router-dom';
+import bathroomIcon from './bathroomIcon.png'
+import userIcon from './userIcon.png'
 
 var mapStyles = {
   width: '100%',
@@ -16,7 +16,11 @@ export class Maps extends React.Component {
         locations: [],
         showingInfoWindow: false,
         activeMarker: {},
-        selectedPlace: {}
+        selectedPlace: {},
+        currentLocation: {
+          lat: 40.7831,
+          lng: -73.9712
+        }
     }
   }
 
@@ -27,6 +31,7 @@ export class Maps extends React.Component {
       this.setState({bathrooms: res});
       this.setState({locations: this.getAllMarkers()});
     });
+    this.getUserLocation();
   }
 
   getAllMarkers = () => {
@@ -62,21 +67,38 @@ export class Maps extends React.Component {
 
   displayMarkers = () => {
     return this.state.locations.map((bathroom, index) => {
-      return <Marker key={index} id={index} position={{
-        lat: bathroom.latitude,
-        lng: bathroom.longitude
-     }}
+      return <Marker key={index} id={index} icon={bathroomIcon}
+        position={{
+          lat: bathroom.latitude,
+          lng: bathroom.longitude
+         }}
       onClick={this.onMarkerClick} 
       name = {bathroom.name}
       address = {bathroom.address}
       />
     })
   }
-  
 
+  displayCurrentLocation = () => {
+    return <Marker name="My Location" icon={userIcon}
+      position={{
+        lat: this.state.currentLocation.lat,
+        lng: this.state.currentLocation.long
+      }} 
+    />
+  }
+  
+  //Gets the lat and long of the user location
   getUserLocation = () => {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(this.showPosition)
+      navigator.geolocation.getCurrentPosition(pos => {
+        const coord = pos.coords;
+        const lat = coord.latitude;
+        const long = coord.longitude;
+        this.setState({
+          currentLocation: {lat,long}
+        })
+      })
     }
   }
 
@@ -87,13 +109,12 @@ export class Maps extends React.Component {
           google={this.props.google} // Google Maps
           style={mapStyles} // Sizing of Map
           zoom={13} // How Far We Zoom For Google Map
-          initialCenter={{ // Starting Location (Manhattan)
-          lat: 40.7831,
-          lng: -73.9712
-          }}
+          initialCenter={this.state.currentLocation}
           onClick={this.onMapClicked} // Clickable Map
+          centerAroundCurrentLocation
         >
         {this.displayMarkers()}
+        {this.displayCurrentLocation()}
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
