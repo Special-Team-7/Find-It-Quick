@@ -16,11 +16,8 @@ export default class LoginPage extends React.Component {
       if (user) {
           this.setState({name: user.displayName});
         // ...
-      } else {
-        // User is not logged in, make them loggin to add bathroom 
-          this.props.history.push("/Login");
-      }
-  })
+      } 
+    })
   }
 
   emailChanged = (e) => { 
@@ -40,6 +37,8 @@ export default class LoginPage extends React.Component {
       let usr = data.user;
       this.setState({name:usr.displayName});
       this.forceUpdate();
+      //redirect to home page
+      this.props.history.push("/");
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -60,23 +59,36 @@ export default class LoginPage extends React.Component {
   }
 
   render() {
-
+    let user = firebase.auth().currentUser;
     return (
       <div className = "loginbox">
-        <h4><u>Login Page</u></h4>
-        <form>
-          <p>Email</p>
-          <input type="text" placeholder="Enter Email" onChange={this.emailChanged}></input>
-          <br/>
-          <br/>
-          <p>Password</p>
-          <input type="password" placeholder="Enter Password" onChange={this.passChanged}></input>
-        </form>
-        <button type="button" className="btn btn-primary" onClick={this.loginUser}> Login </button> 
+        
+
+        {
+          //Test if user is logged 
+          user ? 
+          <div>
+            <h4><u>Logout Page</u></h4>
+            <button type="button" className="btn btn-primary" onClick={this.logoutUser}> Logout </button> 
+          </div>
+          : 
+          <div> 
+            <h4><u>Login Page</u></h4>
+            <form>
+              <p>Email</p>
+              <input type="text" placeholder="Enter Email" onChange={this.emailChanged}></input>
+              <br/>
+              <br/>
+              <p>Password</p>
+              <input type="password" placeholder="Enter Password" onChange={this.passChanged}></input>
+            </form>
+            <button type="button" className="btn btn-primary" onClick={this.loginUser}> Login </button> 
+          </div>
+          
+        }
         <br/>
         <br/>
-        <button type="button" className="btn btn-primary" onClick={this.logoutUser}> Logout </button>
-        <hr/>
+        
       <h4>Welcome {this.state.name+'!'}</h4>
     </div>
     );
