@@ -31,6 +31,7 @@ const providers = {
 };
 
 function Navigation(props) {
+  let user = firebase.auth().currentUser;
   return (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +41,9 @@ function Navigation(props) {
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
           <NavLink className="nav-link" exact to="/Login">
-            Login
+            {
+              user ? <span>Logout</span>:<span>Login</span>
+            }
           </NavLink>
         </li>
         <li className="nav-item">

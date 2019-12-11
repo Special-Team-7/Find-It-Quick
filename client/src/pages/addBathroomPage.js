@@ -79,6 +79,7 @@ export default class addBathroomPage extends React.Component {
           }).then(res => {
             if(res.ok) {
               console.log('Created bathroom successfully');
+              this.props.history.push("/BathroomList");
             }
             else {
               throw new Error('Error creating bathroom');
