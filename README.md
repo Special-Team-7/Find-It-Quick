@@ -1,12 +1,11 @@
-# Project Starter 
-A starter repo for building CUNY Tech Prep projects with React, Express.js, and Sequelize.js
+### Find It Quick
+Responsive web application to locate the nearest bathroom in NYC.
 
-## Stack
-
+# Stack
 *API*
-
-- express.js
-- sequelize.js
+- express
+- sequelize
+- Google Maps API
 
 *React client*
 
@@ -62,6 +61,14 @@ A starter repo for building CUNY Tech Prep projects with React, Express.js, and 
 </pre>
 
 
+#Development Setup
+- After cloning run `npm install` in both root and client folder
+- Set up credentials in .env file located in the client folder
+
+###Backend
+- Must have a database already using Postgres
+- Test backend functions running `npm run dev` in the root folder
+
 ## Dev Setup
 
 Each team member will need to do this on their local machine.
@@ -110,43 +117,4 @@ npm start
 - api-backend will launch at: http://localhost:8080
 - react-client will launch at: http://localhost:3000
 
-> In production you will only deploy a single app. The react client will build into static files that will be served from the backend.
-
-## Deployment
-
-### Setting up Heroku
-
-Install the heroku cli if you don't already have it. 
-
-> You will also need a heroku account
-> And this will only be done once on your machine
-
-```bash
-# on mac
-brew install heroku/brew/heroku
-heroku login
-```
-
-### Create a Heroku project
-
-Next, `cd` into this project directory and create a project:
-
-```bash
-heroku create cool-appname
-heroku addons:create heroku-postgresql:hobby-dev
-```
-
-> This will deploy your apps to https://cool-appname.herokuapp.com, assuming that it is not taken already.
-
-> You only need to do this once per app
-
-### Deploying the app
-
-Whenever you want to update the app run this command.
-
-```bash
-git push heroku master
-```
-
-> This command deploys your master branch. You can change that and deploy a different branch such as: `git push heroku development`
 
