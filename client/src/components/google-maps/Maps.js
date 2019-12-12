@@ -2,6 +2,7 @@ import React from 'react';
 import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import bathroomIcon from './bathroomIcon.png'
 import userIcon from './userIcon.png'
+import { throws } from 'assert';
 
 
 export class Maps extends React.Component {
@@ -27,7 +28,16 @@ export class Maps extends React.Component {
   componentDidMount() {
     this.getUserLocation();
     this.setState({locations: this.getAllMarkers()});
+    console.log('here')
   }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.bathrooms !== this.props.bathrooms) {
+      this.setState({bathrooms:this.props.bathrooms, locations:this.getAllMarkers()})
+    }
+    
+  }
+
 
   getAllMarkers = () => {
     //Array of objects containing lat-long information of all bathrooms
@@ -98,7 +108,6 @@ export class Maps extends React.Component {
   }
 
   render() {
-    //console.log(this.state.bathrooms);
     return (
       <div>
         <Map

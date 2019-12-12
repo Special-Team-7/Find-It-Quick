@@ -23,15 +23,15 @@ class HomePage extends React.Component {
       this.setState({bathrooms: res});
     });
 
-    // // Get all free bathrooms
-    // fetch('/api/bathrooms/free').then(res => res.json()).then((res) => {
-    //   this.setState({freeBathrooms: res});
-    // });
+    // Get all free bathrooms
+    fetch('/api/bathrooms/free').then(res => res.json()).then((res) => {
+      this.setState({freeBathrooms: res});
+    });
 
-    // // Get all paid bathrooms
-    // fetch('/api/bathrooms/paid').then(res => res.json()).then((res) => {
-    //   this.setState({paidBathrooms: res, render:true});
-    // });
+    // Get all paid bathrooms
+    fetch('/api/bathrooms/paid').then(res => res.json()).then((res) => {
+      this.setState({paidBathrooms: res, render:true});
+    });
     
   }
 
@@ -44,19 +44,19 @@ class HomePage extends React.Component {
     const options = ['All', 'Free', 'Paid'];
     const defaultOption = this.state.filter;
 
-    let selectedBathroom = this.state.bathrooms;
+    let selectedBathroom = [];
     
-    // if(this.state.filter === 'All') {
-    //   selectedBathroom = this.state.bathrooms;
-    // }
-    // else if(this.state.filter === 'Free') {
-    //   selectedBathroom = this.state.freeBathrooms;
-    // }
-    // else {
-    //   selectedBathroom = this.state.paidBathrooms;
-    // }
+    if(this.state.filter === 'All') {
+      selectedBathroom = this.state.bathrooms;
+    }
+    else if(this.state.filter === 'Free') {
+      selectedBathroom = this.state.freeBathrooms;
+    }
+    else {
+      selectedBathroom = this.state.paidBathrooms;
+    }
 
-    //console.log(selectedBathroom);
+    //console.log(selectedBathroom)
 
     //There is no bathrooms
     if(selectedBathroom.length === 0) {
