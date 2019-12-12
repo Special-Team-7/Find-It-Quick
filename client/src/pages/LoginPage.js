@@ -63,7 +63,6 @@ export default class LoginPage extends React.Component {
     return (
       <div className = "loginbox">
         
-
         {
           //Test if user is logged 
           user ? 
