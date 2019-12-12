@@ -36,12 +36,13 @@ export class Maps extends React.Component {
     }
   }
 
-  onMarkerClick = (props, marker, e) =>
-  this.setState({
-    selectedPlace: props,
-    activeMarker: marker,
-    showingInfoWindow: true
-  });
+  onMarkerClick = (props, marker, e) => {
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+  }
 
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
@@ -70,7 +71,7 @@ export class Maps extends React.Component {
     return <Marker name="My Location" icon={userIcon}
       position={{
         lat: this.state.currentLocation.lat,
-        lng: this.state.currentLocation.long
+        lng: this.state.currentLocation.lng
       }} 
     />
   }
@@ -81,9 +82,9 @@ export class Maps extends React.Component {
       navigator.geolocation.getCurrentPosition(pos => {
         const coord = pos.coords;
         const lat = coord.latitude;
-        const long = coord.longitude;
+        const lng = coord.longitude;
         this.setState({
-          currentLocation: {lat,long}
+          currentLocation: {lat,lng}
         })
       })
     }
@@ -109,6 +110,9 @@ export class Maps extends React.Component {
               <p><b>Name: </b>{this.state.selectedPlace.name}</p>
               <hr/>
               <p><b>Location: </b>{this.state.selectedPlace.address}</p>
+              <hr/>
+              {/* Gives you a link for the directions on google maps */}
+              {this.state.selectedPlace.position ? <p><b><a href={`https://www.google.com/maps/dir/?api=1&origin=${this.state.currentLocation.lat}, ${this.state.currentLocation.lng}&destination=${this.state.selectedPlace.position.lat},${this.state.selectedPlace.position.lng}&travelmode=transit`} target="_blank">Get Directions</a></b></p>: <div></div>}
             </div>
         </InfoWindow>
         </Map>
