@@ -3,34 +3,28 @@ import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import bathroomIcon from './bathroomIcon.png'
 import userIcon from './userIcon.png'
 
-var mapStyles = {
-  width: '100%',
-  height: '100%'
-};
 
 export class Maps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        bathrooms: [],
-        locations: [],
+        bathrooms: props.bathrooms,
+        // locations: this.getAllMarkers(),
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
         currentLocation: {
           lat: 40.7831,
           lng: -73.9712
-        }
+        },
+        width: props.width,
+        height: props.height,
+        test: props.bathrooms
     }
   }
 
   //Runs when component mounts
   componentDidMount() {
-    //Getting all of the bathrooms via api
-    fetch('/api/bathrooms').then(res => res.json()).then((res) => {
-      this.setState({bathrooms: res});
-      this.setState({locations: this.getAllMarkers()});
-    });
     this.getUserLocation();
   }
 
@@ -103,17 +97,18 @@ export class Maps extends React.Component {
   }
 
   render() {
+    console.log(this.state.test);
     return (
       <div>
         <Map
           google={this.props.google} // Google Maps
-          style={mapStyles} // Sizing of Map
+          style={{width: this.state.width, height: this.state.height}} // Sizing of Map
           zoom={13} // How Far We Zoom For Google Map
           initialCenter={this.state.currentLocation}
           onClick={this.onMapClicked} // Clickable Map
           centerAroundCurrentLocation
         >
-        {this.displayMarkers()}
+        {/* {this.displayMarkers()} */}
         {this.displayCurrentLocation()}
         <InfoWindow
           marker={this.state.activeMarker}
