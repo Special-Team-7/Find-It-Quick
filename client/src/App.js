@@ -15,6 +15,7 @@ import BathroomList from './components/bathroom-lists/BathroomList';
 import addBathroom from './pages/addBathroomPage';
 import BathroomPage from './pages/BathroomPage';
 import ReviewPage from './pages/ReviewPage';
+import AboutUsPage from './pages/AboutUsPage';
 
 import './App.css';
 
@@ -66,10 +67,15 @@ function Navigation(props) {
             Add Bathroom
            </NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" exact to="/AboutUs">
+            About Us
+           </NavLink>
+        </li>
       </ul>
     </div>
     <Link className="navbar-brand" to="/">
-      <img src={ require('./public/logo.png')} width = "70px" height="40px" alt = "Logo" />
+      <img src={ require('./public/pottyhead-blue.png')} width = "40px" height="40px" alt = "Logo" />
       Find It Quick
     </Link>
   </nav>
@@ -100,6 +106,7 @@ class App extends React.Component {
                 <Route path="/addBathroom" component={addBathroom} />
                 <Route path="/review/:reviewId" component={ReviewPage} />
                 <Route path="/BathroomPage" component={BathroomPage} />
+                <Route path="/AboutUs" component={AboutUsPage} />
                 <Route path="/" component={HomePage} />
 
 

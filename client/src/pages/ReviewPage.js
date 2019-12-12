@@ -39,9 +39,14 @@ function RatingCell(review) {
 class ReviewPage extends React.Component {
   constructor(props) {
     super(props);
+    this.goBack = this.goBack.bind(this);
     this.state = {
       reviews: Review
     }
+  }
+
+  goBack(){
+    this.props.history.goBack();
   }
 
   componentDidMount() {
@@ -53,9 +58,11 @@ class ReviewPage extends React.Component {
       <div className="jumbotron ReviewPageBox">
         <div className="row">
           <div className="col-12">
+            <button className="btn btn-primary" onClick={this.goBack}>Back</button>
             <br/>
-            <div className="title text-left"><h1><u>Reviews</u></h1></div>
-            <br/>
+            <div className="title text-left">
+              <h1><u>Reviews</u></h1>
+            </div>
             {this.state.reviews.map((review, index) => {
               return (
                 <RatingCell review={review}/>

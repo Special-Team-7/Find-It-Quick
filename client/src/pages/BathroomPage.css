@@ -1,13 +1,10 @@
-.BathroomPageBox{
+.BathroomPageBox .center{
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
 }
 
-.BathroomPageBox .center{
+.BathroomPageBox button{
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
 }

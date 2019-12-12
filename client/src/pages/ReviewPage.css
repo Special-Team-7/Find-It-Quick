@@ -2,3 +2,7 @@
     color: #3E3E3E;
     font-weight: bold;
 }
+
+.ReviewPageBox button{
+    display: block;
+}
