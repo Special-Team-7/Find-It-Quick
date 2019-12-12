@@ -32,13 +32,18 @@ class BathroomPage extends React.Component {
   }
 
   submitReview = (e) => {
-    e.preventDefault()
+    console.log("SUBMIT REVIEW")
+    //e.stopImmediatePropagation()
     let review = {
       "UID": this.state.UID,
       "BID": this.props.location.state.id,
       "rating": this.state.rating,
       "review": this.state.review
     }
+    console.log(review.UID)
+    console.log(review.BID)
+    console.log(review.rating)
+    console.log(review.review)
     console.log("SUBMIT REVIEW")
     // Make post request to save on the DB
     fetch('/api/reviews/create',{
@@ -55,7 +60,7 @@ class BathroomPage extends React.Component {
           throw new Error('Error creating bathroom');
         }
       })
-      e.preventDefault()
+
   }
 
   componentDidMount() {
@@ -93,6 +98,7 @@ class BathroomPage extends React.Component {
         <h5 className="col-8 pl-3 text-left">{this.state.bathroom.address}</h5>
         <hr/>
         <h4 className="col-6 pl-3 font-weight-bold text-left text-capitalized">Reviews</h4>
+        {/*TODO: fetch reviews and preview 2 reviews*/}
         {/*initialRating should be this.state.bathroom.average_rating*/}
         <Rating
           initialRating={4}
@@ -135,12 +141,9 @@ class BathroomPage extends React.Component {
                   />
                   <div className="col-6">{this.state.rating}</div>
                   <form>
-                    <label>
-                      Rating:
-                      <input type="text" onChange={this.reviewText}/>
-                    </label>
-                    <input type="submit" value="Submit" onChange={this.submitReview} />
+                      <input type="text" onChange={this.reviewText}></input>
                   </form>
+                  <button type="button" onClick={this.submitReview} data-dismiss="modal" aria-label="Close">Submit!</button>
                 </div>
              </div>
               <div className="navy text-left">Upload Image</div>
