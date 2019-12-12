@@ -29,6 +29,8 @@ export default class RegisterPage extends React.Component {
           }).then(res => {
             if(res.ok) {
               console.log('Created user successfully');
+              //redirect to homepage
+              this.props.history.push("/");
             }
             else {
               throw new Error('Error creating user');
