@@ -1,4 +1,4 @@
-### Find It Quick
+# Find It Quick
 Responsive web application to locate the nearest bathroom in NYC.
 
 # Stack
