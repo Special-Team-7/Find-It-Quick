@@ -5,6 +5,8 @@ import StarBlue from '../public/star-blue.png';
 import StarGray from '../public/star-gray.png';
 import './BathroomPage.css';
 //import Maps from '../components/google-maps/Maps';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 class BathroomPage extends React.Component {
   constructor(props) {
@@ -13,6 +15,8 @@ class BathroomPage extends React.Component {
       bathroom: {
       },
       rating: 0,
+      review: '',
+      UID: '',
       review: ''
     }
   }
@@ -22,12 +26,57 @@ class BathroomPage extends React.Component {
     console.log(this.state.rating)
   }
 
+  reviewText = (e) => {
+    this.setState({review: e.target.value })
+    console.log(this.state.review)
+  }
+
+  submitReview = (e) => {
+    e.preventDefault()
+    let review = {
+      "UID": this.state.UID,
+      "BID": this.props.location.state.id,
+      "rating": this.state.rating,
+      "review": this.state.review
+    }
+    console.log("SUBMIT REVIEW")
+    // Make post request to save on the DB
+    fetch('/api/reviews/create',{
+        method:'POST',
+        body: JSON.stringify(review),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => {
+        if(res.ok) {
+          console.log('Created review successfully');
+        }
+        else {
+          throw new Error('Error creating bathroom');
+        }
+      })
+      e.preventDefault()
+  }
+
   componentDidMount() {
     fetch(`/api/bathrooms/${this.props.location.state.id}`).then(res => res.json()).then((res) => {
       this.setState({
         bathroom: res,
       });
     });
+
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.setState({
+            UID: user.uid,
+          });
+            console.log(`User logged with ${user.email}`);
+          // ...
+        } else {
+          // User is not logged in, make them loggin to add bathroom
+            this.props.history.push("/Login");
+        }
+    })
   }
   render() {
     let mapStyles = {
@@ -85,6 +134,13 @@ class BathroomPage extends React.Component {
                     onChange={this.ratingChange.bind(this)}
                   />
                   <div className="col-6">{this.state.rating}</div>
+                  <form>
+                    <label>
+                      Rating:
+                      <input type="text" onChange={this.reviewText}/>
+                    </label>
+                    <input type="submit" value="Submit" onChange={this.submitReview} />
+                  </form>
                 </div>
              </div>
               <div className="navy text-left">Upload Image</div>
