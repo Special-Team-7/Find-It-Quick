@@ -33,9 +33,7 @@ router.get('/free', (req,res) => {
         if(!bathrooms){
             res.send(404);
         }
-
         res.json(bathrooms);
-
     })
 })
 
@@ -50,9 +48,7 @@ router.get('/paid', (req,res) => {
         if(!bathrooms){
             res.send(404);
         }
-
         res.json(bathrooms);
-
     })
 })
 
@@ -71,10 +67,6 @@ router.get('/:id', (req,res) => {
     })
 });
 
-
-
-
-
 //post a new bathroom location
 router.post('/create', (req,res) => {
     let bathroom = req.body;
@@ -92,10 +84,6 @@ router.post('/create', (req,res) => {
             res.send(err);
         })
 });
-
-
-
-
 
 //post a review for a bathroom 
 router.delete('/', (req,res) => {
