@@ -9,7 +9,7 @@ export class Maps extends React.Component {
     super(props);
     this.state = {
         bathrooms: props.bathrooms,
-        // locations: this.getAllMarkers(),
+        locations: [],
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
@@ -26,6 +26,7 @@ export class Maps extends React.Component {
   //Runs when component mounts
   componentDidMount() {
     this.getUserLocation();
+    this.setState({locations: this.getAllMarkers()});
   }
 
   getAllMarkers = () => {
@@ -97,7 +98,7 @@ export class Maps extends React.Component {
   }
 
   render() {
-    console.log(this.state.test);
+    //console.log(this.state.bathrooms);
     return (
       <div>
         <Map
@@ -108,7 +109,7 @@ export class Maps extends React.Component {
           onClick={this.onMapClicked} // Clickable Map
           centerAroundCurrentLocation
         >
-        {/* {this.displayMarkers()} */}
+        {this.displayMarkers()}
         {this.displayCurrentLocation()}
         <InfoWindow
           marker={this.state.activeMarker}
