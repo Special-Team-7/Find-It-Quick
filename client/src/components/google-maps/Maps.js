@@ -10,7 +10,7 @@ export class Maps extends React.Component {
     super(props);
     this.state = {
         bathrooms: props.bathrooms,
-        locations: [],
+        locations: props.markers,
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
@@ -27,31 +27,13 @@ export class Maps extends React.Component {
   //Runs when component mounts
   componentDidMount() {
     this.getUserLocation();
-    this.setState({locations: this.getAllMarkers()});
-    console.log('here')
   }
 
   componentDidUpdate(prevProps) {
+    //Rerender child only if we are passing it new bathrooms, update locations as well
     if(prevProps.bathrooms !== this.props.bathrooms) {
-      this.setState({bathrooms:this.props.bathrooms, locations:this.getAllMarkers()})
+      this.setState({bathrooms:this.props.bathrooms, locations:this.props.markers})
     }
-    
-  }
-
-
-  getAllMarkers = () => {
-    //Array of objects containing lat-long information of all bathrooms
-    let results = [];
-    this.state.bathrooms.forEach(bathroom => {
-      results.push({
-        id: bathroom.id,
-        latitude: bathroom.latitude,
-        longitude: bathroom.longitude,
-        name: bathroom.name,
-        address: bathroom.address
-      });
-    });
-    return results;
   }
 
   onMarkerClick = (props, marker, e) =>

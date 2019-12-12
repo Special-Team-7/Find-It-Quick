@@ -10,7 +10,7 @@ class HomePage extends React.Component {
         bathrooms: [],
         freeBathrooms: [], 
         paidBathrooms: [], 
-        filter: 'All',
+        filter: 'All', //Initially show all bathrooms
         render: false
     }
   }
@@ -35,15 +35,32 @@ class HomePage extends React.Component {
     
   }
 
+  getAllMarkers = (selectedBathroom) => {
+    //Array of objects containing lat-long information of all bathrooms
+    let results = [];
+    selectedBathroom.forEach(bathroom => {
+      results.push({
+        id: bathroom.id,
+        latitude: bathroom.latitude,
+        longitude: bathroom.longitude,
+        name: bathroom.name,
+        address: bathroom.address
+      });
+    });
+    return results;
+  }
 
+  //Update state to show the category of bathrooms we have selected
   onSelect = (e) => {
     this.setState({filter:e.value});
   }
 
   render() {
+    // Category options
     const options = ['All', 'Free', 'Paid'];
     const defaultOption = this.state.filter;
 
+    //Will always reference the bathroom category we have selected
     let selectedBathroom = [];
     
     if(this.state.filter === 'All') {
@@ -56,19 +73,19 @@ class HomePage extends React.Component {
       selectedBathroom = this.state.paidBathrooms;
     }
 
-    //console.log(selectedBathroom)
-
-    //There is no bathrooms
+    //There is no bathrooms so don't display map(To do: Possibly add loading circle)
     if(selectedBathroom.length === 0) {
       return null;
     }
     else {
+      //Get the markers of the bathroom we have selected
+      let markers = this.getAllMarkers(selectedBathroom);
       return (
         <div className="container-fluid text-center">
               <div>
                 <Dropdown options={options} onChange={this.onSelect} value={defaultOption} placeholder={this.state.filter} />
                 <div className="row">
-                  <Maps width={'100%'} height={'100%'} bathrooms={selectedBathroom}/>
+                  <Maps width={'100%'} height={'100%'} bathrooms={selectedBathroom} markers={markers}/>
                 </div> 
               </div>
         </div>
