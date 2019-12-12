@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {Review} = require('../models');
 
+
 //get all reviews
 router.get('/', (req,res) => {
     Review.findAll({
@@ -27,5 +28,19 @@ router.get('/:id', (req, res) => {
       res.json(review);
   })
 });
+
+router.post('/create', (req, res) => {
+  let review = req.body
+  if (!review) {
+    console.log("review does not exist")
+    res.sendStatus(404)
+  }
+  Review.create({UID: review.UID, BID: review.BID, rating: review.rating, review: review.review }).then(task =>{
+      res.sendStatus(200)
+    }).catch(err => {
+      res.sendStatus(404)
+      console.log("CATCH ERROR===:"+err)
+    })
+})
 
 module.exports = router;

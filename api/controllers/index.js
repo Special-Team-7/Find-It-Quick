@@ -12,7 +12,7 @@ const appConfigController = require('./appConfig.js');
 // will be prefixes to all routes defined inside the controller
 router.use('/bathrooms', bathrooms);
 router.use('/user', user);
-router.use('/review', review);
+router.use('/reviews', review);
 router.use('/application-configuration', appConfigController);
 
 
