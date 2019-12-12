@@ -23,6 +23,35 @@ router.get('/', (req,res) => {
     })
 })
 
+//get all free bathrooms
+router.get('/free', (req,res) => {
+    Bathroom.findAll({
+        where: {
+            category: "free"
+          }
+    }).then(bathrooms => {
+        if(!bathrooms){
+            res.send(404);
+        }
+        res.json(bathrooms);
+    })
+})
+
+
+//get all paid bathrooms
+router.get('/paid', (req,res) => {
+    Bathroom.findAll({
+        where: {
+            category: "paid"
+          }
+    }).then(bathrooms => {
+        if(!bathrooms){
+            res.send(404);
+        }
+        res.json(bathrooms);
+    })
+})
+
 //get a bathroom by id
 router.get('/:id', (req,res) => {
     bid=req.params.id;
@@ -37,8 +66,6 @@ router.get('/:id', (req,res) => {
         res.json(bathroom);
     })
 });
-
-
 
 //post a new bathroom location
 router.post('/create', (req,res) => {
