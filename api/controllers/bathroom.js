@@ -1,5 +1,5 @@
 const express = require('express');
-var fakeBathrooms = require('../fakeBathrooms');
+//var fakeBathrooms = require('../fakeBathrooms');
 const router = express.Router();
 const {Bathroom,Post,User} = require('../models');
 //const { Post } = db;
@@ -15,9 +15,9 @@ router.get('/', (req,res) => {
         }
 
         // Temporary so that each bathroom has a temporary picture
-        bathrooms.forEach(bathroom => {
-            bathroom.dataValues.url = fakeBathrooms[0].url;
-        })
+        // bathrooms.forEach(bathroom => {
+        //     bathroom.dataValues.url = fakeBathrooms[0].url;
+        // })
         res.json(bathrooms);
         //res.json(fakeBathrooms);
     })
