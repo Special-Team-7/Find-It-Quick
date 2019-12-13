@@ -27,10 +27,14 @@
   width: 100%;
 } */
 
-body { 
-  padding-top: 95px; 
+body {
+  padding-top: 95px;
   background: url("public/background.jpg") no-repeat center fixed !important;
   background-size: cover !important;
+}
+
+.gradient-skyblue{
+  background-image: linear-gradient(to bottom, #ffffff, 	#D0E2F9);
 }
 
 .darkgray {
@@ -49,12 +53,36 @@ body {
   color: #9597D5;
 }
 
+.background-purple {
+  background-color: #9597D5;
+}
+
+.background-white {
+  background-color: #ffffff;
+}
+
+.background-skyblue {
+  background-color: #D8E7F9;
+}
+
 /*Theme Font*/
 .abrilfont {
   font-family: "Abril Fatface";
+
+}
+
+.blackfont {
   color: black;
 }
 
+.navyfont {
+  color: #284372
+}
+
+.img-70 {
+  width: 70%;
+  height: auto;
+}
 /*Screen Sizes*/
 @media screen and (min-width: 601px) {
   div.subtitle {
