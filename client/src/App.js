@@ -16,6 +16,7 @@ import addBathroom from './pages/addBathroomPage';
 import BathroomPage from './pages/BathroomPage';
 import ReviewPage from './pages/ReviewPage';
 import AboutUsPage from './pages/AboutUsPage';
+import Landing from './pages/Landing'
 
 import './App.css';
 
@@ -113,6 +114,7 @@ class App extends React.Component {
                 <Route path="/review/:reviewId" component={ReviewPage}/>
                 <Route path="/BathroomPage" component={BathroomPage} />
                 <Route path="/AboutUs" component={AboutUsPage} />
+                <Route path="/landing" component={Landing} />
                 <Route path="/" component={HomePage} />
 
 
