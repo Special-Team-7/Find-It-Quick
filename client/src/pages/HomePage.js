@@ -1,7 +1,7 @@
 import React from 'react';
 import Maps from '../components/google-maps/Maps';
-import Dropdown from 'react-dropdown'
-import 'react-dropdown/style.css'
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 class HomePage extends React.Component {
   constructor() {
@@ -82,12 +82,12 @@ class HomePage extends React.Component {
       let markers = this.getAllMarkers(selectedBathroom);
       return (
         <div className="container-fluid text-center">
-              <div>
-                <Dropdown options={options} onChange={this.onSelect} value={defaultOption} placeholder={this.state.filter} />
-                <div className="row">
-                  <Maps width={'100%'} height={'100%'} bathrooms={selectedBathroom} markers={markers}/>
-                </div> 
-              </div>
+          <div>
+            <Dropdown options={options} onChange={this.onSelect} value={defaultOption} placeholder={this.state.filter} />
+            <div className="row">
+              <Maps width={'100%'} height={'100%'} bathrooms={selectedBathroom} markers={markers}/>
+            </div> 
+          </div>
         </div>
       );
     }
