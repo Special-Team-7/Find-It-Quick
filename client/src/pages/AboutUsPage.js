@@ -35,7 +35,7 @@ class AboutUsPage extends React.Component {
             </div>
             <div className = "row">
                 <div className = "col order-first">
-                    <img src={ require('../public/pottyhead-blue.png')}  alt = "Anthony" />
+                    <img src={ require('../public/anthony.png')}  alt = "Anthony" />
                     <br/>
                     <h4>Anthony Bravo</h4>
                 </div>
@@ -50,7 +50,7 @@ class AboutUsPage extends React.Component {
             <hr/>
             <div className = "row">
                 <div className = "col order-first">
-                    <img src={ require('../public/pottyhead-blue.png')}  alt = "Kevin" />
+                    <img src={ require('../public/chibi.png')}  alt = "Kevin" />
                     <br/>
                     <h4>Kevin Chen</h4>
                 </div>
@@ -65,7 +65,7 @@ class AboutUsPage extends React.Component {
             <hr/>
             <div className = "row">
                 <div className = "col order-first">
-                    <img src={ require('../public/pottyhead-blue.png')}  alt = "Josue" />
+                    <img src={ require('../public/josue.png')}  alt = "Josue" />
                     <br/>
                     <h4>Josue Hernandez</h4>
                 </div>
@@ -80,7 +80,7 @@ class AboutUsPage extends React.Component {
             <hr/>
             <div className = "row">
                 <div className = "col order-first">
-                    <img src={ require('../public/pottyhead-blue.png')}  alt = "Yukkee" />
+                    <img src={ require('../public/yuk.png')}  alt = "Yukkee" />
                     <br/>
                     <h4>Yukkee Chang</h4>
                 </div>
