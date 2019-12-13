@@ -5,6 +5,8 @@ import StarBlue from '../public/star-blue.png';
 import StarGray from '../public/star-gray.png';
 import './BathroomPage.css';
 import Maps from '../components/google-maps/Maps';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 class BathroomPage extends React.Component {
   constructor(props) {
@@ -14,6 +16,8 @@ class BathroomPage extends React.Component {
       bathroom: {
       },
       rating: 0,
+      review: '',
+      UID: '',
       review: ''
     }
   }
@@ -27,12 +31,55 @@ class BathroomPage extends React.Component {
     console.log(this.state.rating)
   }
 
+  reviewText = (e) => {
+    this.setState({review: e.target.value })
+    console.log(this.state.review)
+  }
+
+  submitReview = (e) => {
+    console.log("SUBMIT REVIEW")
+    //e.stopImmediatePropagation()
+    let review = {
+      "UID": this.state.UID,
+      "BID": this.props.location.state.id,
+      "rating": this.state.rating,
+      "review": this.state.review
+    }
+    fetch('/api/reviews/create',{
+        method:'POST',
+        body: JSON.stringify(review),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => {
+        if(res.ok) {
+          console.log('Created review successfully');
+        }
+        else {
+          throw new Error('Error creating bathroom');
+        }
+      })
+  }
+
   componentDidMount() {
     fetch(`/api/bathrooms/${this.props.location.state.id}`).then(res => res.json()).then((res) => {
       this.setState({
         bathroom: res,
       });
     });
+
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.setState({
+            UID: user.uid,
+          });
+            console.log(`User logged with ${user.email}`);
+          // ...
+        } else {
+          // User is not logged in, make them loggin to add bathroom
+            this.props.history.push("/Login");
+        }
+    })
   }
 
   getAllMarkers = (selectedBathroom) => {
@@ -107,6 +154,10 @@ class BathroomPage extends React.Component {
                           onChange={this.ratingChange.bind(this)}
                         />
                         <div>{this.state.rating}</div>
+                        <form>
+                          <input type="text" onChange={this.reviewText}></input>
+                       </form>
+                       <button type="button" onClick={this.submitReview} data-dismiss="modal" aria-label="Close">Submit!</button>
                       </div>
                   </div>
                     <div className="navy text-left">Upload Image</div>
@@ -121,9 +172,7 @@ class BathroomPage extends React.Component {
           </div>
         </div>
       </div>
-
     );
   }
 }
-
 export default BathroomPage;

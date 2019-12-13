@@ -20,7 +20,7 @@ import AboutUsPage from './pages/AboutUsPage';
 import './App.css';
 
 //Firebase Set up
-import withFirebaseAuth from 'react-with-firebase-auth';
+import withFirebaseAuth from 'react-with-firebase-auth' ;
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from './components/firebase/firebaseConfig';
