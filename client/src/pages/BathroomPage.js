@@ -4,7 +4,9 @@ import {Link} from 'react-router-dom';
 import StarBlue from '../public/star-blue.png';
 import StarGray from '../public/star-gray.png';
 import './BathroomPage.css';
-//import Maps from '../components/google-maps/Maps';
+import Maps from '../components/google-maps/Maps';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 class BathroomPage extends React.Component {
   constructor(props) {
@@ -14,6 +16,8 @@ class BathroomPage extends React.Component {
       bathroom: {
       },
       rating: 0,
+      review: '',
+      UID: '',
       review: ''
     }
   }
@@ -24,7 +28,36 @@ class BathroomPage extends React.Component {
 
   ratingChange(rate) {
     this.setState({rating: rate})
-    console.log(this.state.rating)
+  }
+
+  reviewText = (e) => {
+    this.setState({review: e.target.value })
+  }
+
+  submitReview = (e) => {
+    //e.stopImmediatePropagation()
+    let review = {
+      "UID": this.state.UID,
+      "BID": this.props.location.state.id,
+      "rating": this.state.rating,
+      "review": this.state.review
+    }
+    fetch('/api/reviews/create',{
+        method:'POST',
+        body: JSON.stringify(review),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => {
+        if(res.ok) {
+          console.log('Created review successfully');
+          //Redirect to reviews page
+          this.props.history.push(`/review/${this.state.bathroom.id}`);
+        }
+        else {
+          throw new Error('Error creating bathroom');
+        }
+      })
   }
 
   componentDidMount() {
@@ -33,26 +66,55 @@ class BathroomPage extends React.Component {
         bathroom: res,
       });
     });
-  }
-  render() {
-    let mapStyles = {
-      width: '50%',
-      height: '50%',
-      position: 'relative'
-    }
-    
-    let url = `https://maps.googleapis.com/maps/api/streetview?size=720x720&location=${this.state.bathroom.latitude},${this.state.bathroom.longitude}&fov=80&heading=180&pitch=0&key=`+process.env.REACT_APP_GOOGLE_MAPS_KEY;
 
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.setState({
+            UID: user.uid,
+          });
+            console.log(`User logged with ${user.email}`);
+          // ...
+        } else {
+          // User is not logged in, make them loggin to add bathroom
+            this.props.history.push("/Login");
+        }
+    })
+  }
+
+  getAllMarkers = (selectedBathroom) => {
+    //Array of objects containing lat-long information of all bathrooms
+    let results = [];
+      results.push({
+        id: selectedBathroom.id,
+        latitude: selectedBathroom.latitude,
+        longitude: selectedBathroom.longitude,
+        name: selectedBathroom.name,
+        address: selectedBathroom.address
+      });
+    return results;
+  }
+
+  render() {    
+    let url = `https://maps.googleapis.com/maps/api/streetview?size=720x720&location=${this.state.bathroom.latitude},${this.state.bathroom.longitude}&fov=80&heading=180&pitch=0&key=`+process.env.REACT_APP_GOOGLE_MAPS_KEY;
+    let selectedBathroom = this.state.bathroom;
+    let markers = this.getAllMarkers(selectedBathroom);
     return (
       <div className="jumbotron BathroomPageBox">
-      <button className="btn btn-primary" onClick={this.goBack}>Back</button>
-      <br/>
-      <div className="row">
-        <div className="col-12">
-          <img className="img-fluid center" src={url} alt = "Bathroom"/>
-            <h2 className="font-weight-bold text-left">{this.state.bathroom.name}</h2>
-            <h5 className="text-left">{this.state.bathroom.address}</h5>
-            <hr/>
+        <button className="btn btn-primary" onClick={this.goBack}>Back</button>
+        <br/>
+        <div className="row">
+          <div className="col-12">
+            <img className="img-fluid center" src={url} alt = "Bathroom"/>
+              <h2 className="font-weight-bold text-left">{this.state.bathroom.name}</h2>
+              <h5 className="text-left">{this.state.bathroom.address}</h5>
+            </div>
+          </div>
+          <div className= "row MapsContainer">
+            <Maps width={'100%'} height={'30%'} bathrooms={selectedBathroom} markers={markers}/>
+          </div>
+        <hr/>
+        <div className = "row">
+          <div className = "col-12">
             <h4 className="font-weight-bold text-left text-capitalized">Reviews</h4>
             {/*initialRating should be this.state.bathroom.average_rating*/}
             <Rating
@@ -65,7 +127,6 @@ class BathroomPage extends React.Component {
             <div style={{color: 'black'}}  className="text-left">{this.state.bathroom.review}</div>
             <Link style={{color: 'blue'}} to={`/review/${this.state.bathroom.id}`}>View All Reviews</Link>
             <hr/>
-            <div style={{margin: 'auto'}}>MAP PLACEHOLDER</div>
             <button type="button" className="btn btn-primary btn-block navy" data-toggle="modal" data-target="#reviewModal">
               <div className="subtitle">Write Review</div>
             </button>
@@ -92,6 +153,10 @@ class BathroomPage extends React.Component {
                           onChange={this.ratingChange.bind(this)}
                         />
                         <div>{this.state.rating}</div>
+                        <form>
+                          <input type="text" onChange={this.reviewText}></input>
+                       </form>
+                       <button type="button" onClick={this.submitReview} data-dismiss="modal" aria-label="Close">Submit!</button>
                       </div>
                   </div>
                     <div className="navy text-left">Upload Image</div>
@@ -106,9 +171,7 @@ class BathroomPage extends React.Component {
           </div>
         </div>
       </div>
-
     );
   }
 }
-
 export default BathroomPage;
