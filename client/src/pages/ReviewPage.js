@@ -17,7 +17,7 @@ function RatingCell(review) {
     <div className="container">
       <div className="row">
         <div className="col-6">
-          <div className="abrilfont subtitle text-left">{review.review.Name}</div>
+          <div className="abrilfont blackfont subtitle text-left">{review.review.Name}</div>
         </div>
         <div className="col-6">
           <Rating
