@@ -62,7 +62,6 @@ export default class LoginPage extends React.Component {
     let user = firebase.auth().currentUser;
     return (
       <div className = "loginbox">
-        
         {
           //Test if user is logged 
           user ? 
@@ -83,7 +82,6 @@ export default class LoginPage extends React.Component {
             </form>
             <button type="button" className="btn btn-primary" onClick={this.loginUser}> Login </button> 
           </div>
-          
         }
         <br/>
         <br/>

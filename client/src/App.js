@@ -47,11 +47,17 @@ function Navigation(props) {
             }
           </NavLink>
         </li>
+        {
+          user ?
+          <div>
+          </div>
+          :
         <li className="nav-item">
           <NavLink className="nav-link" exact to="/Register">
             Register
           </NavLink>
         </li>
+        }
         <li className="nav-item">
           <NavLink className="nav-link" exact to="/">
             Google Maps
