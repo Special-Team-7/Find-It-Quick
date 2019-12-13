@@ -2,59 +2,47 @@ import React from 'react';
 import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import bathroomIcon from './bathroomIcon.png'
 import userIcon from './userIcon.png'
+import { throws } from 'assert';
 
-var mapStyles = {
-  width: '100%',
-  height: '100%'
-};
 
 export class Maps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        bathrooms: [],
-        locations: [],
+        bathrooms: props.bathrooms,
+        locations: props.markers,
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
         currentLocation: {
           lat: 40.7831,
           lng: -73.9712
-        }
+        },
+        width: props.width,
+        height: props.height,
+        test: props.bathrooms
     }
   }
 
   //Runs when component mounts
   componentDidMount() {
-    //Getting all of the bathrooms via api
-    fetch('/api/bathrooms').then(res => res.json()).then((res) => {
-      this.setState({bathrooms: res});
-      this.setState({locations: this.getAllMarkers()});
-    });
     this.getUserLocation();
   }
 
-  getAllMarkers = () => {
-    //Array of objects containing lat-long information of all bathrooms
-    let results = [];
-    this.state.bathrooms.forEach(bathroom => {
-      results.push({
-        id: bathroom.id,
-        latitude: bathroom.latitude,
-        longitude: bathroom.longitude,
-        name: bathroom.name,
-        address: bathroom.address
-      });
-    });
-    return results;
+  componentDidUpdate(prevProps) {
+    //Rerender child only if we are passing it new bathrooms, update locations as well
+    if(prevProps.bathrooms !== this.props.bathrooms) {
+      this.setState({bathrooms:this.props.bathrooms, locations:this.props.markers})
+    }
   }
 
-  onMarkerClick = (props, marker, e) =>
-  this.setState({
-    selectedPlace: props,
-    activeMarker: marker,
-    showingInfoWindow: true
-  });
+  onMarkerClick = (props, marker, e) => {
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+  }
 
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
@@ -83,7 +71,7 @@ export class Maps extends React.Component {
     return <Marker name="My Location" icon={userIcon}
       position={{
         lat: this.state.currentLocation.lat,
-        lng: this.state.currentLocation.long
+        lng: this.state.currentLocation.lng
       }} 
     />
   }
@@ -94,9 +82,9 @@ export class Maps extends React.Component {
       navigator.geolocation.getCurrentPosition(pos => {
         const coord = pos.coords;
         const lat = coord.latitude;
-        const long = coord.longitude;
+        const lng = coord.longitude;
         this.setState({
-          currentLocation: {lat,long}
+          currentLocation: {lat,lng}
         })
       })
     }
@@ -107,7 +95,7 @@ export class Maps extends React.Component {
       <div>
         <Map
           google={this.props.google} // Google Maps
-          style={mapStyles} // Sizing of Map
+          style={{width: this.state.width, height: this.state.height}} // Sizing of Map
           zoom={13} // How Far We Zoom For Google Map
           initialCenter={this.state.currentLocation}
           onClick={this.onMapClicked} // Clickable Map
@@ -122,6 +110,9 @@ export class Maps extends React.Component {
               <p><b>Name: </b>{this.state.selectedPlace.name}</p>
               <hr/>
               <p><b>Location: </b>{this.state.selectedPlace.address}</p>
+              <hr/>
+              {/* Gives you a link for the directions on google maps */}
+              {this.state.selectedPlace.position ? <p><b><a href={`https://www.google.com/maps/dir/?api=1&origin=${this.state.currentLocation.lat}, ${this.state.currentLocation.lng}&destination=${this.state.selectedPlace.position.lat},${this.state.selectedPlace.position.lng}&travelmode=transit`} target="_blank">Get Directions</a></b></p>: <div></div>}
             </div>
         </InfoWindow>
         </Map>
