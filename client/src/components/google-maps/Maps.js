@@ -2,7 +2,6 @@ import React from 'react';
 import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import bathroomIcon from './bathroomIcon.png'
 import userIcon from './userIcon.png'
-import { throws } from 'assert';
 
 
 export class Maps extends React.Component {
@@ -20,7 +19,6 @@ export class Maps extends React.Component {
         },
         width: props.width,
         height: props.height,
-        test: props.bathrooms
     }
   }
 
