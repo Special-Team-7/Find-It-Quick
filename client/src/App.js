@@ -91,7 +91,7 @@ class App extends React.Component {
       me: firebase.auth().currentUser
     }
   }
-
+ 
   render() {
     return (
         <Router>
@@ -104,7 +104,7 @@ class App extends React.Component {
                 <Route path="/Login" component={LoginPage} />
                 <Route path="/bathroom/:bathroomId" component={BathroomPage}/>
                 <Route path="/addBathroom" component={addBathroom} />
-                <Route path="/review/:reviewId" component={ReviewPage} />
+                <Route path="/review/:reviewId" component={ReviewPage}/>
                 <Route path="/BathroomPage" component={BathroomPage} />
                 <Route path="/AboutUs" component={AboutUsPage} />
                 <Route path="/" component={HomePage} />

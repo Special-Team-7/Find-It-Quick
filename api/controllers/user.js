@@ -8,6 +8,21 @@ router.get('/', (req,res) => {
     res.send('working');
 });
 
+//get user by id
+router.get('/:id', (req,res) => {
+    uid=req.params.id;
+    User.findOne({
+        where: {
+            id:uid
+        }
+    }).then(user => {
+        if(!user) {
+            res.send(404);
+        }
+        res.json(user);
+    })
+})
+
 router.post('/register', (req,res) => {
     let user = { 
         body_id: req.body.id,
