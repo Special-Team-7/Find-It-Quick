@@ -81,7 +81,7 @@ function Navigation(props) {
         </li>
       </ul>
     </div>
-    <Link className="navbar-brand" to="/">
+    <Link className="navbar-brand" to="/Landing">
       <img src={ require('./public/pottyhead-blue.png')} width = "40px" height="40px" alt = "Logo" />
       Find It Quick
     </Link>
@@ -114,7 +114,7 @@ class App extends React.Component {
                 <Route path="/review/:reviewId" component={ReviewPage}/>
                 <Route path="/BathroomPage" component={BathroomPage} />
                 <Route path="/AboutUs" component={AboutUsPage} />
-                <Route path="/landing" component={Landing} />
+                <Route path="/Landing" component={Landing} />
                 <Route path="/" component={HomePage} />
 
 
