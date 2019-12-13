@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import StarBlue from '../public/star-blue.png';
 import StarGray from '../public/star-gray.png';
 import './BathroomPage.css';
-//import Maps from '../components/google-maps/Maps';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
@@ -45,12 +44,6 @@ class BathroomPage extends React.Component {
       "rating": this.state.rating,
       "review": this.state.review
     }
-    console.log(review.UID)
-    console.log(review.BID)
-    console.log(review.rating)
-    console.log(review.review)
-    console.log("SUBMIT REVIEW")
-    // Make post request to save on the DB
     fetch('/api/reviews/create',{
         method:'POST',
         body: JSON.stringify(review),
@@ -65,7 +58,6 @@ class BathroomPage extends React.Component {
           throw new Error('Error creating bathroom');
         }
       })
-
   }
 
   componentDidMount() {
@@ -88,15 +80,14 @@ class BathroomPage extends React.Component {
         }
     })
   }
+
   render() {
     let mapStyles = {
       width: '50%',
       height: '50%',
       position: 'relative'
     }
-
     let url = `https://maps.googleapis.com/maps/api/streetview?size=720x720&location=${this.state.bathroom.latitude},${this.state.bathroom.longitude}&fov=80&heading=180&pitch=0&key=`+process.env.REACT_APP_GOOGLE_MAPS_KEY;
-
     return (
       <div className="jumbotron BathroomPageBox">
       <button className="btn btn-primary" onClick={this.goBack}>Back</button>
@@ -147,9 +138,9 @@ class BathroomPage extends React.Component {
                         />
                         <div>{this.state.rating}</div>
                         <form>
--                          <input type="text" onChange={this.reviewText}></input>
--                       </form>
--                       <button type="button" onClick={this.submitReview} data-dismiss="modal" aria-label="Close">Submit!</button>
+                          <input type="text" onChange={this.reviewText}></input>
+                       </form>
+                       <button type="button" onClick={this.submitReview} data-dismiss="modal" aria-label="Close">Submit!</button>
                       </div>
                   </div>
                     <div className="navy text-left">Upload Image</div>
@@ -164,9 +155,7 @@ class BathroomPage extends React.Component {
           </div>
         </div>
       </div>
-
     );
   }
 }
-
 export default BathroomPage;
