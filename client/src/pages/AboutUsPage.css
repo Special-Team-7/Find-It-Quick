@@ -1,0 +1,21 @@
+.AboutUsBox{
+    width: 90%;
+    opacity: 0.95;
+    filter: alpha(opacity=95); /* For IE8 and earlier */
+}
+
+.AboutUsBox p{
+    font-size: 20px;
+    padding: 0px 20px;
+}
+
+.AboutUsBox a{
+    font-size: 20px;
+    overflow-wrap: break-word;
+}
+
+.AboutUsBox img{
+    border-radius: 50%;
+    height: 110px;
+    width: 110px;
+}

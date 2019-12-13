@@ -156,13 +156,12 @@ class BathroomPage extends React.Component {
                         <form>
                           <input type="text" onChange={this.reviewText}></input>
                        </form>
-                       <button type="button" onClick={this.submitReview} data-dismiss="modal" aria-label="Close">Submit!</button>
                       </div>
                   </div>
                     <div className="navy text-left">Upload Image</div>
                   </div>
                   <div className="modal-footer">
-                    <button type="button" className="btn btn-primary">Save changes</button>
+                    <button type="button"  onClick={this.submitReview} data-dismiss="modal" className="btn btn-primary" aria-label="Close">Submit Review</button>
                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                   </div>
                 </div>

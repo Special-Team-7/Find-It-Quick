@@ -13,7 +13,7 @@
     "react-google-autocomplete": "^1.1.2",
     "react-rating": "^2.0.3",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.1.2",
+    "react-scripts": "^3.3.0",
     "react-with-firebase-auth": "^1.1.0"
   },
   "scripts": {
