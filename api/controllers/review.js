@@ -12,10 +12,28 @@ router.get('/', (req,res) => {
             res.send(404);
         }
     })
-})
+}) 
+
+//Get review by bathroom id
+router.get('/bathrooms/:id', (req, res) => {
+  //use bathroom ID to get review for specific bathroom
+  bid=req.params.id;
+  Review.findAll({
+      where: {
+          BID: bid
+      }
+  }).then(review => {
+      if(!review){
+          res.sendStatus(404);
+      }
+      res.json(review);
+  })
+});
+
+
+//Get review by id
 router.get('/:id', (req, res) => {
   //use bathroom ID to get review for specific bathroom
-  console.log(`calling specific id! ${req.params.id}`);
   bid=req.params.id;
   Review.findOne({
       where: {

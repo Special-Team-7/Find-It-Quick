@@ -28,16 +28,13 @@ class BathroomPage extends React.Component {
 
   ratingChange(rate) {
     this.setState({rating: rate})
-    console.log(this.state.rating)
   }
 
   reviewText = (e) => {
     this.setState({review: e.target.value })
-    console.log(this.state.review)
   }
 
   submitReview = (e) => {
-    console.log("SUBMIT REVIEW")
     //e.stopImmediatePropagation()
     let review = {
       "UID": this.state.UID,
@@ -54,6 +51,8 @@ class BathroomPage extends React.Component {
       }).then(res => {
         if(res.ok) {
           console.log('Created review successfully');
+          //Redirect to reviews page
+          this.props.history.push(`/review/${this.state.bathroom.id}`);
         }
         else {
           throw new Error('Error creating bathroom');

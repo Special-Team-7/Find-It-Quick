@@ -4,15 +4,15 @@ import StarBlue from '../public/star-blue.png';
 import StarGray from '../public/star-gray.png';
 import './ReviewPage.css';
 
-//Placeholder data until we can fetch reviews
-const Review = [
-    {Name: 'Tommy S.', UID: '1', BID: '1', Rating: 1, Review: 'Lorem ipsum dolor amet woke small batch vaporware, synth palo santo succulents heirloom iceland pug cloud bread seitan crucifix distillery snackwave hoodie. Food truck banjo squid sustainable, fanny pack twee butcher drinking'},
-    {Name: 'Michael B.', UID: '2', BID: '1', Rating: 4, Review: 'wolf moon celiac mixtape messenger bag hoodie palo santo hella. Roof party fixie retro, mixtape thundercats bushwick tilde authentic'},
-    {Name: 'Anna L.', UID: '3', BID: '1', Rating: 4, Review: 'fingerstache live-edge asymmetrical vice fashionx axe trust fund truffaut 3 wolf'}
-]
 
+//Old reviews format
+let Review = [
+    // {Name: 'Tommy S.', UID: '1', BID: '1', Rating: 1, Review: 'Lorem ipsum dolor amet woke small batch vaporware, synth palo santo succulents heirloom iceland pug cloud bread seitan crucifix distillery snackwave hoodie. Food truck banjo squid sustainable, fanny pack twee butcher drinking'},
+    // {Name: 'Michael B.', UID: '2', BID: '1', Rating: 4, Review: 'wolf moon celiac mixtape messenger bag hoodie palo santo hella. Roof party fixie retro, mixtape thundercats bushwick tilde authentic'},
+    // {Name: 'Anna L.', UID: '3', BID: '1', Rating: 4, Review: 'fingerstache live-edge asymmetrical vice fashionx axe trust fund truffaut 3 wolf'}
+]
+ 
 function RatingCell(review) {
-  console.log(review.review.Rating)
   return (
     <div className="container">
       <div className="row">
@@ -50,28 +50,59 @@ class ReviewPage extends React.Component {
   }
 
   componentDidMount() {
-    //TODO: API call for reviews based on bathroom ID
+    Review = [];
+    // Get reviews for this bathroom
+    fetch(`/api/reviews/bathrooms/${this.props.match.params.reviewId}`).then(res => res.json()).then((res) => {
+      let reviews = res; //List of all reviews, now traverse to get all users of each review
+      
+      reviews.forEach(review => {
+        //Get the user information for each review through a fetch
+        fetch(`/api/user/${review.UID}`).then(res=>res.json()).then(res => {
+          let user = res;
+
+          //Build the Review object
+          let obj = {
+            Name : user.name,
+            UID: user.id,
+            BID: review.BID,
+            Rating: review.rating,
+            Review: review.review
+          }
+
+           //Add this object to the Review state array
+          let newReviews = this.state.reviews;
+          newReviews.push(obj);
+          this.setState({reviews:newReviews})
+
+        })
+
+      });
+    })
+
   }
 
   render() {
-    return (
-      <div className="jumbotron ReviewPageBox">
-        <div className="row">
-          <div className="col-12">
-            <button className="btn btn-primary" onClick={this.goBack}>Back</button>
-            <br/>
-            <div className="title text-left">
-              <h1><u>Reviews</u></h1>
+    if(this.state.reviews.length === 0) {return null;}
+    else {
+      return (
+        <div className="jumbotron ReviewPageBox">
+          <div className="row">
+            <div className="col-12">
+              <button className="btn btn-primary" onClick={this.goBack}>Back</button>
+              <br/>
+              <div className="title text-left">
+                <h1><u>Reviews</u></h1>
+              </div>
+              {this.state.reviews.map((review, index) => {
+                return (
+                  <RatingCell review={review}/>
+                )
+              })}
             </div>
-            {this.state.reviews.map((review, index) => {
-              return (
-                <RatingCell review={review}/>
-              )
-            })}
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
