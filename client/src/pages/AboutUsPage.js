@@ -50,7 +50,7 @@ class AboutUsPage extends React.Component {
             <hr/>
             <div className = "row">
                 <div className = "col order-first">
-                    <img src={ require('../public/chibi.png')}  alt = "Kevin" />
+                    <img src={ require('../public/chibi.jpg')}  alt = "Kevin" />
                     <br/>
                     <h4>Kevin Chen</h4>
                 </div>
